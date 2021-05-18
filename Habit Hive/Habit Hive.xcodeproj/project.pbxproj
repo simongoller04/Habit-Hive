@@ -1,0 +1,600 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		764B3A4526540E02006C3D63 /* Habit_HiveApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764B3A4426540E02006C3D63 /* Habit_HiveApp.swift */; };
+		764B3A4726540E02006C3D63 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764B3A4626540E02006C3D63 /* ContentView.swift */; };
+		764B3A4926540E08006C3D63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 764B3A4826540E08006C3D63 /* Assets.xcassets */; };
+		764B3A4C26540E08006C3D63 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 764B3A4B26540E08006C3D63 /* Preview Assets.xcassets */; };
+		764B3A4E26540E08006C3D63 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764B3A4D26540E08006C3D63 /* Persistence.swift */; };
+		764B3A5126540E08006C3D63 /* Habit_Hive.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 764B3A4F26540E08006C3D63 /* Habit_Hive.xcdatamodeld */; };
+		764B3A5C26540E08006C3D63 /* Habit_HiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764B3A5B26540E08006C3D63 /* Habit_HiveTests.swift */; };
+		764B3A6726540E08006C3D63 /* Habit_HiveUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764B3A6626540E08006C3D63 /* Habit_HiveUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		764B3A5826540E08006C3D63 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 764B3A3926540E02006C3D63 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 764B3A4026540E02006C3D63;
+			remoteInfo = "Habit Hive";
+		};
+		764B3A6326540E08006C3D63 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 764B3A3926540E02006C3D63 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 764B3A4026540E02006C3D63;
+			remoteInfo = "Habit Hive";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		764B3A4126540E02006C3D63 /* Habit Hive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Habit Hive.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		764B3A4426540E02006C3D63 /* Habit_HiveApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit_HiveApp.swift; sourceTree = "<group>"; };
+		764B3A4626540E02006C3D63 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		764B3A4826540E08006C3D63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		764B3A4B26540E08006C3D63 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		764B3A4D26540E08006C3D63 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		764B3A5026540E08006C3D63 /* Habit_Hive.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Habit_Hive.xcdatamodel; sourceTree = "<group>"; };
+		764B3A5226540E08006C3D63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		764B3A5726540E08006C3D63 /* Habit HiveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Habit HiveTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		764B3A5B26540E08006C3D63 /* Habit_HiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit_HiveTests.swift; sourceTree = "<group>"; };
+		764B3A5D26540E08006C3D63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		764B3A6226540E08006C3D63 /* Habit HiveUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Habit HiveUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		764B3A6626540E08006C3D63 /* Habit_HiveUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit_HiveUITests.swift; sourceTree = "<group>"; };
+		764B3A6826540E08006C3D63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		764B3A3E26540E02006C3D63 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		764B3A5426540E08006C3D63 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		764B3A5F26540E08006C3D63 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		764B3A3826540E02006C3D63 = {
+			isa = PBXGroup;
+			children = (
+				764B3A4326540E02006C3D63 /* Habit Hive */,
+				764B3A5A26540E08006C3D63 /* Habit HiveTests */,
+				764B3A6526540E08006C3D63 /* Habit HiveUITests */,
+				764B3A4226540E02006C3D63 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		764B3A4226540E02006C3D63 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				764B3A4126540E02006C3D63 /* Habit Hive.app */,
+				764B3A5726540E08006C3D63 /* Habit HiveTests.xctest */,
+				764B3A6226540E08006C3D63 /* Habit HiveUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		764B3A4326540E02006C3D63 /* Habit Hive */ = {
+			isa = PBXGroup;
+			children = (
+				764B3A4426540E02006C3D63 /* Habit_HiveApp.swift */,
+				764B3A4626540E02006C3D63 /* ContentView.swift */,
+				764B3A4826540E08006C3D63 /* Assets.xcassets */,
+				764B3A4D26540E08006C3D63 /* Persistence.swift */,
+				764B3A5226540E08006C3D63 /* Info.plist */,
+				764B3A4F26540E08006C3D63 /* Habit_Hive.xcdatamodeld */,
+				764B3A4A26540E08006C3D63 /* Preview Content */,
+			);
+			path = "Habit Hive";
+			sourceTree = "<group>";
+		};
+		764B3A4A26540E08006C3D63 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				764B3A4B26540E08006C3D63 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		764B3A5A26540E08006C3D63 /* Habit HiveTests */ = {
+			isa = PBXGroup;
+			children = (
+				764B3A5B26540E08006C3D63 /* Habit_HiveTests.swift */,
+				764B3A5D26540E08006C3D63 /* Info.plist */,
+			);
+			path = "Habit HiveTests";
+			sourceTree = "<group>";
+		};
+		764B3A6526540E08006C3D63 /* Habit HiveUITests */ = {
+			isa = PBXGroup;
+			children = (
+				764B3A6626540E08006C3D63 /* Habit_HiveUITests.swift */,
+				764B3A6826540E08006C3D63 /* Info.plist */,
+			);
+			path = "Habit HiveUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		764B3A4026540E02006C3D63 /* Habit Hive */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 764B3A6B26540E08006C3D63 /* Build configuration list for PBXNativeTarget "Habit Hive" */;
+			buildPhases = (
+				764B3A3D26540E02006C3D63 /* Sources */,
+				764B3A3E26540E02006C3D63 /* Frameworks */,
+				764B3A3F26540E02006C3D63 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Habit Hive";
+			productName = "Habit Hive";
+			productReference = 764B3A4126540E02006C3D63 /* Habit Hive.app */;
+			productType = "com.apple.product-type.application";
+		};
+		764B3A5626540E08006C3D63 /* Habit HiveTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 764B3A6E26540E08006C3D63 /* Build configuration list for PBXNativeTarget "Habit HiveTests" */;
+			buildPhases = (
+				764B3A5326540E08006C3D63 /* Sources */,
+				764B3A5426540E08006C3D63 /* Frameworks */,
+				764B3A5526540E08006C3D63 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				764B3A5926540E08006C3D63 /* PBXTargetDependency */,
+			);
+			name = "Habit HiveTests";
+			productName = "Habit HiveTests";
+			productReference = 764B3A5726540E08006C3D63 /* Habit HiveTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		764B3A6126540E08006C3D63 /* Habit HiveUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 764B3A7126540E08006C3D63 /* Build configuration list for PBXNativeTarget "Habit HiveUITests" */;
+			buildPhases = (
+				764B3A5E26540E08006C3D63 /* Sources */,
+				764B3A5F26540E08006C3D63 /* Frameworks */,
+				764B3A6026540E08006C3D63 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				764B3A6426540E08006C3D63 /* PBXTargetDependency */,
+			);
+			name = "Habit HiveUITests";
+			productName = "Habit HiveUITests";
+			productReference = 764B3A6226540E08006C3D63 /* Habit HiveUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		764B3A3926540E02006C3D63 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					764B3A4026540E02006C3D63 = {
+						CreatedOnToolsVersion = 12.5;
+					};
+					764B3A5626540E08006C3D63 = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = 764B3A4026540E02006C3D63;
+					};
+					764B3A6126540E08006C3D63 = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = 764B3A4026540E02006C3D63;
+					};
+				};
+			};
+			buildConfigurationList = 764B3A3C26540E02006C3D63 /* Build configuration list for PBXProject "Habit Hive" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 764B3A3826540E02006C3D63;
+			productRefGroup = 764B3A4226540E02006C3D63 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				764B3A4026540E02006C3D63 /* Habit Hive */,
+				764B3A5626540E08006C3D63 /* Habit HiveTests */,
+				764B3A6126540E08006C3D63 /* Habit HiveUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		764B3A3F26540E02006C3D63 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				764B3A4C26540E08006C3D63 /* Preview Assets.xcassets in Resources */,
+				764B3A4926540E08006C3D63 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		764B3A5526540E08006C3D63 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		764B3A6026540E08006C3D63 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		764B3A3D26540E02006C3D63 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				764B3A4E26540E08006C3D63 /* Persistence.swift in Sources */,
+				764B3A4726540E02006C3D63 /* ContentView.swift in Sources */,
+				764B3A5126540E08006C3D63 /* Habit_Hive.xcdatamodeld in Sources */,
+				764B3A4526540E02006C3D63 /* Habit_HiveApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		764B3A5326540E08006C3D63 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				764B3A5C26540E08006C3D63 /* Habit_HiveTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		764B3A5E26540E08006C3D63 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				764B3A6726540E08006C3D63 /* Habit_HiveUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		764B3A5926540E08006C3D63 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 764B3A4026540E02006C3D63 /* Habit Hive */;
+			targetProxy = 764B3A5826540E08006C3D63 /* PBXContainerItemProxy */;
+		};
+		764B3A6426540E08006C3D63 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 764B3A4026540E02006C3D63 /* Habit Hive */;
+			targetProxy = 764B3A6326540E08006C3D63 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		764B3A6926540E08006C3D63 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		764B3A6A26540E08006C3D63 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		764B3A6C26540E08006C3D63 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Habit Hive/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Habit Hive/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "habitHive.Habit-Hive";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		764B3A6D26540E08006C3D63 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Habit Hive/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Habit Hive/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "habitHive.Habit-Hive";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		764B3A6F26540E08006C3D63 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Habit HiveTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "habitHive.Habit-HiveTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Habit Hive.app/Habit Hive";
+			};
+			name = Debug;
+		};
+		764B3A7026540E08006C3D63 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Habit HiveTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "habitHive.Habit-HiveTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Habit Hive.app/Habit Hive";
+			};
+			name = Release;
+		};
+		764B3A7226540E08006C3D63 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Habit HiveUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "habitHive.Habit-HiveUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Habit Hive";
+			};
+			name = Debug;
+		};
+		764B3A7326540E08006C3D63 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Habit HiveUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "habitHive.Habit-HiveUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Habit Hive";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		764B3A3C26540E02006C3D63 /* Build configuration list for PBXProject "Habit Hive" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				764B3A6926540E08006C3D63 /* Debug */,
+				764B3A6A26540E08006C3D63 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		764B3A6B26540E08006C3D63 /* Build configuration list for PBXNativeTarget "Habit Hive" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				764B3A6C26540E08006C3D63 /* Debug */,
+				764B3A6D26540E08006C3D63 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		764B3A6E26540E08006C3D63 /* Build configuration list for PBXNativeTarget "Habit HiveTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				764B3A6F26540E08006C3D63 /* Debug */,
+				764B3A7026540E08006C3D63 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		764B3A7126540E08006C3D63 /* Build configuration list for PBXNativeTarget "Habit HiveUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				764B3A7226540E08006C3D63 /* Debug */,
+				764B3A7326540E08006C3D63 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		764B3A4F26540E08006C3D63 /* Habit_Hive.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				764B3A5026540E08006C3D63 /* Habit_Hive.xcdatamodel */,
+			);
+			currentVersion = 764B3A5026540E08006C3D63 /* Habit_Hive.xcdatamodel */;
+			path = Habit_Hive.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 764B3A3926540E02006C3D63 /* Project object */;
+}
