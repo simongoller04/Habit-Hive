@@ -21,6 +21,7 @@
 		769274A52663CE5400312194 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 769274A32663CE5400312194 /* Main.storyboard */; };
 		769274BC2663ED8000312194 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769274BB2663ED8000312194 /* Constants.swift */; };
 		769274BE266419A400312194 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 769274BD266419A400312194 /* GoogleService-Info.plist */; };
+		EC24384526651AE9009ABA22 /* final_logo2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EC24384426651AE9009ABA22 /* final_logo2@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		769274A42663CE5400312194 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = HabitHiveLocalTest/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		769274BB2663ED8000312194 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		769274BD266419A400312194 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EC24384426651AE9009ABA22 /* final_logo2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "final_logo2@3x.png"; path = "../../../../Documents/final_logo2@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		7692746B2663CD4F00312194 /* HabitHive */ = {
 			isa = PBXGroup;
 			children = (
+				EC24384326651A91009ABA22 /* Images */,
 				7692746C2663CD4F00312194 /* AppDelegate.swift */,
 				7692746E2663CD4F00312194 /* SceneDelegate.swift */,
 				769274BA2663ED4D00312194 /* Helpers */,
@@ -126,6 +129,14 @@
 				493B626B18A0180C78364906 /* Pods-HabitHive.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		EC24384326651A91009ABA22 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				EC24384426651AE9009ABA22 /* final_logo2@3x.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,6 +200,7 @@
 			files = (
 				769274A52663CE5400312194 /* Main.storyboard in Resources */,
 				769274BE266419A400312194 /* GoogleService-Info.plist in Resources */,
+				EC24384526651AE9009ABA22 /* final_logo2@3x.png in Resources */,
 				76234D8D26642A7100A6D0BE /* Screenshot 2021-05-30 221652.jpg in Resources */,
 				769274792663CD5000312194 /* LaunchScreen.storyboard in Resources */,
 				769274762663CD5000312194 /* Assets.xcassets in Resources */,
