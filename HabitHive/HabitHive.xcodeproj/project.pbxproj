@@ -1,0 +1,460 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3A5C50AFC2ECB941B0786ED1 /* Pods_HabitHive.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CAC7102AAF5922BDB41F057 /* Pods_HabitHive.framework */; };
+		76234D8D26642A7100A6D0BE /* Screenshot 2021-05-30 221652.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 76234D8C26642A7100A6D0BE /* Screenshot 2021-05-30 221652.jpg */; };
+		762609F82664FC0E0084D5C2 /* CreateHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762609F72664FC0E0084D5C2 /* CreateHabitViewController.swift */; };
+		7692746D2663CD4F00312194 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692746C2663CD4F00312194 /* AppDelegate.swift */; };
+		7692746F2663CD4F00312194 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692746E2663CD4F00312194 /* SceneDelegate.swift */; };
+		769274712663CD4F00312194 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769274702663CD4F00312194 /* ViewController.swift */; };
+		769274762663CD5000312194 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 769274752663CD5000312194 /* Assets.xcassets */; };
+		769274792663CD5000312194 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 769274772663CD5000312194 /* LaunchScreen.storyboard */; };
+		7692749F2663CD9E00312194 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692749B2663CD9E00312194 /* SignUpViewController.swift */; };
+		769274A12663CD9E00312194 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692749D2663CD9E00312194 /* HomeViewController.swift */; };
+		769274A22663CD9E00312194 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692749E2663CD9E00312194 /* LoginViewController.swift */; };
+		769274A52663CE5400312194 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 769274A32663CE5400312194 /* Main.storyboard */; };
+		769274BC2663ED8000312194 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769274BB2663ED8000312194 /* Constants.swift */; };
+		769274BE266419A400312194 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 769274BD266419A400312194 /* GoogleService-Info.plist */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		493B626B18A0180C78364906 /* Pods-HabitHive.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitHive.release.xcconfig"; path = "Target Support Files/Pods-HabitHive/Pods-HabitHive.release.xcconfig"; sourceTree = "<group>"; };
+		4ECA345A5648DB6C69D61D2A /* Pods-HabitHive.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HabitHive.debug.xcconfig"; path = "Target Support Files/Pods-HabitHive/Pods-HabitHive.debug.xcconfig"; sourceTree = "<group>"; };
+		6CAC7102AAF5922BDB41F057 /* Pods_HabitHive.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HabitHive.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		76234D8C26642A7100A6D0BE /* Screenshot 2021-05-30 221652.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Screenshot 2021-05-30 221652.jpg"; sourceTree = "<group>"; };
+		762609F72664FC0E0084D5C2 /* CreateHabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateHabitViewController.swift; sourceTree = "<group>"; };
+		769274692663CD4F00312194 /* HabitHive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabitHive.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7692746C2663CD4F00312194 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7692746E2663CD4F00312194 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		769274702663CD4F00312194 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../ViewController.swift; sourceTree = "<group>"; };
+		769274752663CD5000312194 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		769274782663CD5000312194 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7692747A2663CD5000312194 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7692749B2663CD9E00312194 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		7692749D2663CD9E00312194 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		7692749E2663CD9E00312194 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		769274A42663CE5400312194 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = HabitHiveLocalTest/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		769274BB2663ED8000312194 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		769274BD266419A400312194 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		769274662663CD4F00312194 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A5C50AFC2ECB941B0786ED1 /* Pods_HabitHive.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		769274602663CD4F00312194 = {
+			isa = PBXGroup;
+			children = (
+				7692746B2663CD4F00312194 /* HabitHive */,
+				7692746A2663CD4F00312194 /* Products */,
+				CAC29B9B565F621A24C529BF /* Pods */,
+				8E1B1EF5D625D7B78B9C3B83 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		7692746A2663CD4F00312194 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				769274692663CD4F00312194 /* HabitHive.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7692746B2663CD4F00312194 /* HabitHive */ = {
+			isa = PBXGroup;
+			children = (
+				7692746C2663CD4F00312194 /* AppDelegate.swift */,
+				7692746E2663CD4F00312194 /* SceneDelegate.swift */,
+				769274BA2663ED4D00312194 /* Helpers */,
+				769274752663CD5000312194 /* Assets.xcassets */,
+				76234D8C26642A7100A6D0BE /* Screenshot 2021-05-30 221652.jpg */,
+				7692749A2663CD9E00312194 /* View Controllers */,
+				769274A32663CE5400312194 /* Main.storyboard */,
+				769274772663CD5000312194 /* LaunchScreen.storyboard */,
+				7692747A2663CD5000312194 /* Info.plist */,
+				769274BD266419A400312194 /* GoogleService-Info.plist */,
+			);
+			path = HabitHive;
+			sourceTree = "<group>";
+		};
+		7692749A2663CD9E00312194 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				769274702663CD4F00312194 /* ViewController.swift */,
+				7692749B2663CD9E00312194 /* SignUpViewController.swift */,
+				7692749D2663CD9E00312194 /* HomeViewController.swift */,
+				7692749E2663CD9E00312194 /* LoginViewController.swift */,
+				762609F72664FC0E0084D5C2 /* CreateHabitViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		769274BA2663ED4D00312194 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				769274BB2663ED8000312194 /* Constants.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		8E1B1EF5D625D7B78B9C3B83 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6CAC7102AAF5922BDB41F057 /* Pods_HabitHive.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CAC29B9B565F621A24C529BF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4ECA345A5648DB6C69D61D2A /* Pods-HabitHive.debug.xcconfig */,
+				493B626B18A0180C78364906 /* Pods-HabitHive.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		769274682663CD4F00312194 /* HabitHive */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7692747D2663CD5000312194 /* Build configuration list for PBXNativeTarget "HabitHive" */;
+			buildPhases = (
+				E447ACB2B6D71B424E96F027 /* [CP] Check Pods Manifest.lock */,
+				769274652663CD4F00312194 /* Sources */,
+				769274662663CD4F00312194 /* Frameworks */,
+				769274672663CD4F00312194 /* Resources */,
+				7D547A0267AF3826604CFCA0 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HabitHive;
+			productName = HabitHiveTestLogin;
+			productReference = 769274692663CD4F00312194 /* HabitHive.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		769274612663CD4F00312194 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					769274682663CD4F00312194 = {
+						CreatedOnToolsVersion = 12.5;
+					};
+				};
+			};
+			buildConfigurationList = 769274642663CD4F00312194 /* Build configuration list for PBXProject "HabitHive" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 769274602663CD4F00312194;
+			productRefGroup = 7692746A2663CD4F00312194 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				769274682663CD4F00312194 /* HabitHive */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		769274672663CD4F00312194 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				769274A52663CE5400312194 /* Main.storyboard in Resources */,
+				769274BE266419A400312194 /* GoogleService-Info.plist in Resources */,
+				76234D8D26642A7100A6D0BE /* Screenshot 2021-05-30 221652.jpg in Resources */,
+				769274792663CD5000312194 /* LaunchScreen.storyboard in Resources */,
+				769274762663CD5000312194 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7D547A0267AF3826604CFCA0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HabitHive/Pods-HabitHive-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HabitHive/Pods-HabitHive-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HabitHive/Pods-HabitHive-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E447ACB2B6D71B424E96F027 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HabitHive-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		769274652663CD4F00312194 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				769274A22663CD9E00312194 /* LoginViewController.swift in Sources */,
+				769274712663CD4F00312194 /* ViewController.swift in Sources */,
+				7692746D2663CD4F00312194 /* AppDelegate.swift in Sources */,
+				7692749F2663CD9E00312194 /* SignUpViewController.swift in Sources */,
+				769274BC2663ED8000312194 /* Constants.swift in Sources */,
+				762609F82664FC0E0084D5C2 /* CreateHabitViewController.swift in Sources */,
+				7692746F2663CD4F00312194 /* SceneDelegate.swift in Sources */,
+				769274A12663CD9E00312194 /* HomeViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		769274772663CD5000312194 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				769274782663CD5000312194 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		769274A32663CE5400312194 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				769274A42663CE5400312194 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7692747B2663CD5000312194 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		7692747C2663CD5000312194 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7692747E2663CD5000312194 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4ECA345A5648DB6C69D61D2A /* Pods-HabitHive.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "$(SRCROOT)/HabitHive/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.habithive.habithive;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7692747F2663CD5000312194 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 493B626B18A0180C78364906 /* Pods-HabitHive.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "$(SRCROOT)/HabitHive/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.habithive.habithive;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		769274642663CD4F00312194 /* Build configuration list for PBXProject "HabitHive" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7692747B2663CD5000312194 /* Debug */,
+				7692747C2663CD5000312194 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7692747D2663CD5000312194 /* Build configuration list for PBXNativeTarget "HabitHive" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7692747E2663CD5000312194 /* Debug */,
+				7692747F2663CD5000312194 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 769274612663CD4F00312194 /* Project object */;
+}

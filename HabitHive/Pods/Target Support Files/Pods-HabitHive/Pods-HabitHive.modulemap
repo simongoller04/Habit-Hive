@@ -1,0 +1,6 @@
+framework module Pods_HabitHive {
+  umbrella header "Pods-HabitHive-umbrella.h"
+
+  export *
+  module * { export * }
+}
