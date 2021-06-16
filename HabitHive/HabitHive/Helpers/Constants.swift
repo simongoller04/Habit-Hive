@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 
 struct Constants{
     
@@ -13,5 +14,8 @@ struct Constants{
        static let homeViewController = "HomeVC"
         static let loginViewController = "LoginVC"
         static let signUpViewController = "SignUpVC"
+        static let profileViewController = "ProfileVC"
+        static let navigationViewController = "NavigationVC"
+        static let settingsNavigationController = "SettingsNavigationVC"
     }
 }
