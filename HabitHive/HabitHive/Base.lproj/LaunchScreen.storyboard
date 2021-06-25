@@ -16,25 +16,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Screenshot 2021-05-30 221652.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="4ak-U4-ce4">
-                                <rect key="frame" x="27" y="306.5" width="360" height="283"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HabitHiveLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="yhR-gf-Cj3">
+                                <rect key="frame" x="107" y="348" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="8V4-4v-20A"/>
+                                    <constraint firstAttribute="height" constant="200" id="rUx-01-ecw"/>
+                                </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Habit Hive" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JHZ-xv-PbQ">
+                                <rect key="frame" x="123" y="436" width="168" height="42"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="4ak-U4-ce4" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="rmY-dT-Cxf"/>
-                            <constraint firstItem="4ak-U4-ce4" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="yvm-mJ-tWl"/>
+                            <constraint firstItem="JHZ-xv-PbQ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" multiplier="1.02" id="1cw-v8-6Nf"/>
+                            <constraint firstItem="yhR-gf-Cj3" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="9R7-hl-rRT"/>
+                            <constraint firstItem="JHZ-xv-PbQ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Ft2-og-Xi0"/>
+                            <constraint firstItem="yhR-gf-Cj3" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="ZmJ-nF-CMp"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.173913043478265" y="375"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Screenshot 2021-05-30 221652.jpg" width="270" height="212.25"/>
+        <image name="HabitHiveLogo.png" width="612" height="905"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

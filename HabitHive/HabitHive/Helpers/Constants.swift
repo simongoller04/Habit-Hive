@@ -17,5 +17,6 @@ struct Constants{
         static let profileViewController = "ProfileVC"
         static let navigationViewController = "NavigationVC"
         static let settingsNavigationController = "SettingsNavigationVC"
+        static let tabBarController = "TabBarVC"
     }
 }

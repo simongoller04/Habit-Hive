@@ -21,6 +21,7 @@ class LoginViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         setUpElements()
+        emailTextField.becomeFirstResponder()
     }
     
     func setUpElements(){
@@ -66,9 +67,9 @@ class LoginViewController: UIViewController {
                     }
                     else{
                     
-                        let homeViewController = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
+                        let tabBarViewController = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.tabBarController) as? TabBarViewController
                      
-                        self.view.window?.rootViewController = homeViewController
+                        self.view.window?.rootViewController = tabBarViewController
                         self.view.window?.makeKeyAndVisible()
                     }
                 }
