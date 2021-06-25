@@ -548,44 +548,23 @@
                                     <segue destination="P9K-vY-SXp" kind="show" id="AzX-NZ-uTj"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="6Uz-VQ-g39">
-                                <rect key="frame" x="102.33333333333333" y="123" width="185.33333333333337" height="31"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dark Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iyn-Dc-ika">
-                                        <rect key="frame" x="0.0" y="0.0" width="96.333333333333329" height="31"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="rTF-wm-6hf">
-                                        <rect key="frame" x="136.33333333333331" y="0.0" width="51" height="31"/>
-                                        <color key="onTintColor" red="0.93218002239999997" green="0.74364480129999999" blue="0.1926953444" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <connections>
-                                            <action selector="darkModeSwitch:" destination="fLE-eb-EoW" eventType="valueChanged" id="aie-L2-qJ9"/>
-                                        </connections>
-                                    </switch>
-                                </subviews>
-                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fgy-fI-vaz"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Nyk-7A-URs" firstAttribute="top" secondItem="eXy-uK-wyh" secondAttribute="bottom" constant="80" id="74B-pb-1B0"/>
-                            <constraint firstItem="eXy-uK-wyh" firstAttribute="top" secondItem="6Uz-VQ-g39" secondAttribute="bottom" constant="40" id="9iB-M4-E6Z"/>
                             <constraint firstItem="eXy-uK-wyh" firstAttribute="top" secondItem="fgy-fI-vaz" secondAttribute="top" constant="150" id="Anz-56-NMg"/>
                             <constraint firstItem="fgy-fI-vaz" firstAttribute="trailing" secondItem="Nyk-7A-URs" secondAttribute="trailing" constant="100" id="Ojw-jB-fhR"/>
                             <constraint firstItem="fgy-fI-vaz" firstAttribute="trailing" secondItem="eXy-uK-wyh" secondAttribute="trailing" constant="100" id="qOk-oW-C4Y"/>
                             <constraint firstItem="Nyk-7A-URs" firstAttribute="leading" secondItem="fgy-fI-vaz" secondAttribute="leading" constant="100" id="rSM-sf-6S9"/>
                             <constraint firstItem="eXy-uK-wyh" firstAttribute="leading" secondItem="fgy-fI-vaz" secondAttribute="leading" constant="100" id="tBj-CU-Gvy"/>
                             <constraint firstItem="eXy-uK-wyh" firstAttribute="centerX" secondItem="mfg-Ty-bP3" secondAttribute="centerX" id="wUO-lK-E9l"/>
-                            <constraint firstItem="6Uz-VQ-g39" firstAttribute="centerX" secondItem="mfg-Ty-bP3" secondAttribute="centerX" id="zYh-YL-l17"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Settings" id="Wek-fs-W3a"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="darkModeSwitch" destination="rTF-wm-6hf" id="WsS-GT-ukT"/>
                         <outlet property="navigationBarTitle" destination="Wek-fs-W3a" id="V2z-Sn-Q9G"/>
                     </connections>
                 </viewController>
