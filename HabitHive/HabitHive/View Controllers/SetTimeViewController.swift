@@ -22,7 +22,7 @@ class SetTimeViewController: UIViewController {
     }
        
     @IBAction func confirmButton(_ sender: Any) {
-        timeDelegate?.didTapConfirmTime(time: timePicker, color: UIColor(red: 237.0/255.0, green: 204.0/255.0, blue: 0/255.0, alpha: 1.0))
+        timeDelegate?.didTapConfirmTime(time: timePicker, color: UIColor(red: 252/255.0, green: 190.0/255.0, blue: 44.0/255.0, alpha: 1))
         dismiss(animated: true, completion: nil)
     }
 }

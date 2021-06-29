@@ -27,7 +27,7 @@ class SetAmountViewController: UIViewController {
     }
     
     @IBAction func confirmButtonTapped(_ sender: Any) {
-        amountDelegate?.didTapConfirmAmount(amount: Int(stepper.value), color: UIColor(red: 237.0/255.0, green: 204.0/255.0, blue: 0/255.0, alpha: 1.0))
+        amountDelegate?.didTapConfirmAmount(amount: Int(stepper.value), color: UIColor(red: 252/255.0, green: 190.0/255.0, blue: 44.0/255.0, alpha: 1))
         dismiss(animated: true, completion: nil)
     }
 }

@@ -10,25 +10,23 @@ import FirebaseAuth
 
 class newHabit: NSObject {
     var name: String
-    var color: UIColor
+    var color: Int
     //    var timed: UIDatePicker?  wie?
     var counted: Int?
     var addToCalendar: Bool
     var remindMe: Bool
-    var shareWithHive: Bool
     
-    init(name: String, color: UIColor, counted: Int?, addToCalendar: Bool, remindMe: Bool, shareWithHive: Bool) {
+    init(name: String, color: Int, counted: Int?, addToCalendar: Bool, remindMe: Bool) {
         self.name = name
         self.color = color
         self.counted = counted
         self.addToCalendar = addToCalendar
         self.remindMe = remindMe
-        self.shareWithHive = shareWithHive
         
     }
 }
 
-class CreateHabitViewController: UIViewController, UIColorPickerViewControllerDelegate {
+class CreateHabitViewController: UIViewController {
     
     var userDefaults = UserDefaults.standard
     
@@ -39,6 +37,7 @@ class CreateHabitViewController: UIViewController, UIColorPickerViewControllerDe
     
     @IBOutlet weak var timedHabit: UIButton!
     @IBOutlet weak var countedHabit: UIButton!
+    @IBOutlet weak var colorPickerButton: UIButton!
     
     @IBOutlet weak var addHabit: UIButton!
     @IBOutlet weak var habitName: UITextField!
@@ -56,33 +55,43 @@ class CreateHabitViewController: UIViewController, UIColorPickerViewControllerDe
     // Switches
     @IBOutlet weak var externalCalendar: UISwitch!
     @IBOutlet weak var remindeMe: UISwitch!
-    @IBOutlet weak var shareHive: UISwitch!
     let dispatchGroup = DispatchGroup()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // adds Action to habitColor Button
-        habitColor.addTarget(self, action: #selector(colorPicker), for: .touchUpInside)
+        colorPickerButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
         
+        var color = UIColor()
+        let current = UserDefaults().integer(forKey: "sectionColor")
+        switch current{
+        case 1:
+            color = UIColor.systemBlue
+        case 2:
+            color = UIColor.systemGreen
+        case 3:
+            color = UIColor.systemYellow
+        case 4:
+            color = UIColor.systemOrange
+        case 5:
+            color = UIColor.systemPurple
+        default:
+            color = UIColor.systemGray
+        }
+        colorPickerButton.layer.cornerRadius = 10
+        colorPickerButton.tintColor = color
+        
+        tabBarController?.tabBar.isHidden = true
     }
     
-    @objc private func colorPicker (){
-        let colorPickerVC = UIColorPickerViewController()
-        colorPickerVC.delegate = self
-        present(colorPickerVC, animated: true)
+    override func viewWillDisappear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
     }
     
-    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
-        let color = viewController.selectedColor
-        habitColor.backgroundColor = color
-        //            add color to variable
-    }
-    
-    func colorPickerViewControllerDidSelectColor(_ viewController: UIColorPickerViewController) {
-        let color = viewController.selectedColor
-        habitColor.backgroundColor = color
-        //            add color to variable
+    @IBAction func colorPickerButtonTapped(_ sender: Any) {
+        let colorVC = storyboard?.instantiateViewController(withIdentifier: "colorPickerVC") as! SectionColorViewController
+        colorVC.colorDelegate = self
+        present(colorVC, animated: true, completion: nil)
     }
     
     @IBAction func timedButtonTapped(_ sender: Any) {
@@ -99,12 +108,8 @@ class CreateHabitViewController: UIViewController, UIColorPickerViewControllerDe
         present(amountVC, animated: true, completion: nil)
     }
     
-    @IBAction func cancelButtonTapped(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
     @IBAction func addHabitButtonTapped(_ sender: Any) {
-        let newHabit = newHabit(name: habitName.text ?? "new Habit", color: habitColor.backgroundColor ?? .orange, counted: valueCounter, addToCalendar: externalCalendar.isOn, remindMe: remindeMe.isOn, shareWithHive: shareHive.isOn)
+        let newHabit = newHabit(name: habitName.text ?? "new Habit", color: UserDefaults().integer(forKey: "sectionColor") ,counted: valueCounter, addToCalendar: externalCalendar.isOn, remindMe: remindeMe.isOn)
         
         let habitCounterRef = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid)
         habitCounterRef.getDocument{(document, error) in
@@ -114,19 +119,19 @@ class CreateHabitViewController: UIViewController, UIColorPickerViewControllerDe
                 self.habitCounter = document.get("habitCounter") as! Int
                 print("after: \(self.habitCounter)")
             }
-            Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("habits").document("habit\(self.habitCounter)").setData(["name": newHabit.name, "color": 5, "counted": self.isCounted, "goal": newHabit.counted!, "externalCalendar": self.shareHive.isOn, "remindeMe": self.remindeMe.isOn, "share": self.shareHive.isOn])
+            Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("habits").document("habit\(self.habitCounter)").setData(["name": newHabit.name, "color": UserDefaults().value(forKey: "sectionColor")!, "counted": self.isCounted, "goal": newHabit.counted!, "externalCalendar": true, "remindeMe": self.remindeMe.isOn])
             
             habitCounterRef.updateData(["habitCounter": self.habitCounter + 1])
-            print("huso")
             
-            let homeScreen = self.storyboard?.instantiateViewController(withIdentifier: "TabBarVC") as! TabBarViewController
-            homeScreen.modalPresentationStyle = .fullScreen
-            self.present(homeScreen, animated: true, completion: nil)
+            self.navigationController?.popViewController(animated: true)
+//            let habitVC = self.storyboard?.instantiateViewController(withIdentifier: "homeVC") as! HabitCollectionViewController
+//            habitVC.modalPresentationStyle = .fullScreen
+//            self.present(habitVC, animated: true, completion: nil)
         }
     }
 }
 
-extension CreateHabitViewController: SetAmountDelegate, SetTimeDelegate {
+extension CreateHabitViewController: SetAmountDelegate, SetTimeDelegate, GetColorDelegate {
     
     func didTapConfirmAmount(amount: Int, color: UIColor) {
         valueCounter = amount
@@ -139,6 +144,11 @@ extension CreateHabitViewController: SetAmountDelegate, SetTimeDelegate {
         countedHabit.backgroundColor = .systemGray5
         timedHabit.backgroundColor = color
     }
+    
+    func didTapColorPickerButton (color: UIColor){
+        colorPickerButton.tintColor = color
+    }
+    
 }
 
 

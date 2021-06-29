@@ -21,6 +21,7 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        firstNameTextField.becomeFirstResponder()
         setUpElements()
     }
     
@@ -86,6 +87,7 @@ class SignUpViewController: UIViewController {
                             self.showError("Error saving user data")
                         }
                     }
+                    UserDefaults.standard.set(3, forKey: "sectionColor")
                     //transition to home screen
                     self.transitionToHome()
                 }
@@ -101,9 +103,9 @@ class SignUpViewController: UIViewController {
     
     func transitionToHome(){
         
-       let homeViewController = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
-        
-        view.window?.rootViewController = homeViewController
-        view.window?.makeKeyAndVisible()
+        let tabBarViewController = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.tabBarController) as? TabBarViewController
+     
+        self.view.window?.rootViewController = tabBarViewController
+        self.view.window?.makeKeyAndVisible()
     }
 }
