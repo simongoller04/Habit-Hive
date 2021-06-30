@@ -147,6 +147,10 @@
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="0.0"/>
                         </collectionViewFlowLayout>
+                        <activityIndicatorView key="backgroundView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" id="UGH-mS-vzP">
+                            <rect key="frame" x="0.0" y="-44" width="390" height="844"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </activityIndicatorView>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="habitCell" id="Qah-Xg-aLY" customClass="HabitCollectionViewCell" customModule="HabitHive" customModuleProvider="target">
                                 <rect key="frame" x="20" y="20" width="175" height="175"/>
@@ -163,26 +167,47 @@
                                                 <constraint firstAttribute="width" constant="175" id="eSI-GW-iUV"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HabitName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YN7-Dt-6q8">
-                                            <rect key="frame" x="42.333333333333336" y="77" width="90.333333333333314" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HabitName" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YN7-Dt-6q8">
+                                            <rect key="frame" x="22.666666666666671" y="76.666666666666671" width="130" height="21.666666666666671"/>
                                             <gestureRecognizers/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="130" id="HYv-JC-qlk"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tfu-Xy-gja">
+                                            <rect key="frame" x="82.333333333333329" y="108.33333333333333" width="10.333333333333329" height="20.999999999999986"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Streak" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Vv-a0-aVh">
+                                            <rect key="frame" x="63" y="45.666666666666664" width="49" height="20.999999999999993"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="YN7-Dt-6q8" firstAttribute="top" secondItem="0Vv-a0-aVh" secondAttribute="bottom" constant="10" id="Jqa-kl-OpX"/>
                                         <constraint firstItem="YN7-Dt-6q8" firstAttribute="centerY" secondItem="Qpo-8S-nyd" secondAttribute="centerY" id="JyA-Dw-FHR"/>
                                         <constraint firstItem="u3o-WB-a2l" firstAttribute="leading" secondItem="Qpo-8S-nyd" secondAttribute="leading" id="Pi4-mK-F0G"/>
+                                        <constraint firstItem="Tfu-Xy-gja" firstAttribute="top" secondItem="YN7-Dt-6q8" secondAttribute="bottom" constant="10" id="WXU-Ca-N0u"/>
                                         <constraint firstAttribute="trailing" secondItem="u3o-WB-a2l" secondAttribute="trailing" id="flO-tG-TMZ"/>
+                                        <constraint firstItem="0Vv-a0-aVh" firstAttribute="centerX" secondItem="Qpo-8S-nyd" secondAttribute="centerX" id="mEF-QY-v5b"/>
+                                        <constraint firstItem="Tfu-Xy-gja" firstAttribute="centerX" secondItem="Qpo-8S-nyd" secondAttribute="centerX" id="uws-qV-0i0"/>
                                         <constraint firstAttribute="bottom" secondItem="u3o-WB-a2l" secondAttribute="bottom" id="vXz-M1-IPf"/>
                                         <constraint firstItem="u3o-WB-a2l" firstAttribute="top" secondItem="Qpo-8S-nyd" secondAttribute="top" id="wXz-SM-ncJ"/>
                                         <constraint firstItem="YN7-Dt-6q8" firstAttribute="centerX" secondItem="Qpo-8S-nyd" secondAttribute="centerX" id="ymr-vj-0Th"/>
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <connections>
+                                    <outlet property="habitCountLabel" destination="Tfu-Xy-gja" id="JhJ-gD-Dd0"/>
                                     <outlet property="habitNameLabel" destination="YN7-Dt-6q8" id="8sv-I6-dcC"/>
                                     <outlet property="imageView" destination="u3o-WB-a2l" id="dcr-Ph-YLW"/>
+                                    <outlet property="streakLabel" destination="0Vv-a0-aVh" id="ksm-pt-e7R"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -194,6 +219,9 @@
                     <tabBarItem key="tabBarItem" title="Habit Hive" id="TrC-ux-i8H">
                         <imageReference key="image" image="hexagon.fill" catalog="system" symbolScale="large"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="activityIndicator" destination="UGH-mS-vzP" id="VDH-IN-8jY"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WGx-Mo-ftr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -306,12 +334,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="t7d-ng-LV8">
+                                <rect key="frame" x="185" y="509" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="kO2-qz-VAe" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.5" id="5OB-3p-DI9"/>
                             <constraint firstItem="VSU-t6-LoC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="310" id="6hZ-Dt-g46"/>
+                            <constraint firstItem="t7d-ng-LV8" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.23" id="L6j-R0-qtT"/>
                             <constraint firstItem="VSU-t6-LoC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="80" id="M2s-KI-cJT"/>
                             <constraint firstItem="BSq-5P-I5q" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MCh-Xj-dV0"/>
                             <constraint firstItem="Q72-Mr-SfW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OYD-At-Cuk"/>
@@ -321,11 +353,13 @@
                             <constraint firstItem="Q72-Mr-SfW" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.52" id="hN2-mf-ata"/>
                             <constraint firstItem="kO2-qz-VAe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nUu-BV-SWi"/>
                             <constraint firstItem="BSq-5P-I5q" firstAttribute="top" secondItem="b2y-NM-Z74" secondAttribute="bottom" constant="25" id="sd1-eI-HAU"/>
+                            <constraint firstItem="t7d-ng-LV8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="toc-hE-MA2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="b2y-NM-Z74" secondAttribute="trailing" constant="110" id="vsv-T8-u73"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2h7-Tc-wGX"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="t7d-ng-LV8" id="71T-2r-6bg"/>
                         <outlet property="emailTextField" destination="12B-of-x0j" id="U34-Qf-4aJ"/>
                         <outlet property="errorLabel" destination="TjT-Be-p9O" id="c3Q-zw-jqW"/>
                         <outlet property="loginButton" destination="Gqe-mG-Y5y" id="OUR-gB-gqF"/>
@@ -497,16 +531,24 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="P9K-vY-SXp" kind="show" id="AzX-NZ-uTj"/>
+                                    <action selector="signOutButtonTapped:" destination="fLE-eb-EoW" eventType="touchUpInside" id="yFL-3e-KfR"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error signing out!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DIf-nb-2Dk">
+                                <rect key="frame" x="132.66666666666666" y="454.66666666666669" width="124.66666666666666" height="19.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fgy-fI-vaz"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Nyk-7A-URs" firstAttribute="top" secondItem="eXy-uK-wyh" secondAttribute="bottom" constant="80" id="74B-pb-1B0"/>
                             <constraint firstItem="eXy-uK-wyh" firstAttribute="top" secondItem="fgy-fI-vaz" secondAttribute="top" constant="100" id="Anz-56-NMg"/>
+                            <constraint firstItem="DIf-nb-2Dk" firstAttribute="centerY" secondItem="mfg-Ty-bP3" secondAttribute="centerY" multiplier="1.1" id="GOG-NX-MWf"/>
                             <constraint firstItem="fgy-fI-vaz" firstAttribute="trailing" secondItem="Nyk-7A-URs" secondAttribute="trailing" constant="100" id="Ojw-jB-fhR"/>
+                            <constraint firstItem="DIf-nb-2Dk" firstAttribute="centerX" secondItem="mfg-Ty-bP3" secondAttribute="centerX" id="haj-1E-fkS"/>
                             <constraint firstItem="fgy-fI-vaz" firstAttribute="trailing" secondItem="eXy-uK-wyh" secondAttribute="trailing" constant="100" id="qOk-oW-C4Y"/>
                             <constraint firstItem="Nyk-7A-URs" firstAttribute="leading" secondItem="fgy-fI-vaz" secondAttribute="leading" constant="100" id="rSM-sf-6S9"/>
                             <constraint firstItem="eXy-uK-wyh" firstAttribute="leading" secondItem="fgy-fI-vaz" secondAttribute="leading" constant="100" id="tBj-CU-Gvy"/>
@@ -517,6 +559,7 @@
                     <navigationItem key="navigationItem" title="Settings" id="Wek-fs-W3a"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="errorLabel" destination="DIf-nb-2Dk" id="VYe-YY-Pok"/>
                         <outlet property="navigationBarTitle" destination="Wek-fs-W3a" id="V2z-Sn-Q9G"/>
                     </connections>
                 </viewController>
@@ -863,7 +906,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f4a-cd-MA2">
                                         <rect key="frame" x="0.0" y="0.0" width="135" height="50"/>
-                                        <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="gGG-kc-t1n"/>
                                         </constraints>
@@ -882,7 +925,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rIo-IR-07A">
                                         <rect key="frame" x="175" y="0.0" width="135" height="50"/>
-                                        <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="ejB-dL-i6T"/>
                                         </constraints>
@@ -975,6 +1018,12 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Habit needs a name!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sG9-Cv-HiL">
+                                <rect key="frame" x="75.999999999999986" y="210.33333333333334" width="175.66666666666663" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JJN-s8-LyT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -986,6 +1035,7 @@
                             <constraint firstItem="d8u-Lt-OVr" firstAttribute="leading" secondItem="JJN-s8-LyT" secondAttribute="leading" constant="70" id="E6H-BD-J9J"/>
                             <constraint firstItem="7Cd-4w-Y8i" firstAttribute="leading" secondItem="JJN-s8-LyT" secondAttribute="leading" constant="40" id="EBY-yW-jeL"/>
                             <constraint firstItem="Q20-oI-VEP" firstAttribute="leading" secondItem="JJN-s8-LyT" secondAttribute="leading" constant="40" id="LNV-B4-Dvt"/>
+                            <constraint firstItem="sG9-Cv-HiL" firstAttribute="centerX" secondItem="4De-4p-9mH" secondAttribute="centerX" multiplier="0.84" id="Mdi-j7-jxt"/>
                             <constraint firstItem="lPC-pq-yu6" firstAttribute="centerX" secondItem="4De-4p-9mH" secondAttribute="centerX" multiplier="1.68" id="Qbc-rD-fW4"/>
                             <constraint firstItem="JJN-s8-LyT" firstAttribute="trailing" secondItem="7Cd-4w-Y8i" secondAttribute="trailing" constant="40" id="RR1-ny-NRS"/>
                             <constraint firstItem="kMr-G6-eVA" firstAttribute="leading" secondItem="JJN-s8-LyT" secondAttribute="leading" constant="40" id="V9A-yI-ZM4"/>
@@ -1000,6 +1050,7 @@
                             <constraint firstItem="Q20-oI-VEP" firstAttribute="centerY" secondItem="4De-4p-9mH" secondAttribute="centerY" multiplier="1.7" id="q4f-Lr-6YT"/>
                             <constraint firstItem="bMs-Ur-WHU" firstAttribute="leading" secondItem="HkY-P9-MSK" secondAttribute="trailing" constant="25" id="rVK-cu-r3h"/>
                             <constraint firstItem="lPC-pq-yu6" firstAttribute="centerY" secondItem="4De-4p-9mH" secondAttribute="centerY" multiplier="0.62" id="tZb-th-sFl"/>
+                            <constraint firstItem="sG9-Cv-HiL" firstAttribute="centerY" secondItem="4De-4p-9mH" secondAttribute="centerY" multiplier="0.52" id="yzk-Wf-tB0"/>
                             <constraint firstItem="JJN-s8-LyT" firstAttribute="trailing" secondItem="HkY-P9-MSK" secondAttribute="trailing" constant="110" id="zOE-My-ya2"/>
                             <constraint firstItem="HkY-P9-MSK" firstAttribute="leading" secondItem="JJN-s8-LyT" secondAttribute="leading" constant="40" id="zfy-DS-Zhu"/>
                         </constraints>
@@ -1009,6 +1060,7 @@
                         <outlet property="addHabit" destination="XHR-72-xa1" id="Bac-6B-pTp"/>
                         <outlet property="colorPickerButton" destination="bMs-Ur-WHU" id="Ce6-e2-5ee"/>
                         <outlet property="countedHabit" destination="rIo-IR-07A" id="tb8-Bu-i7u"/>
+                        <outlet property="errorLabel" destination="sG9-Cv-HiL" id="qMf-zl-msI"/>
                         <outlet property="externalCalendar" destination="ioI-d8-z44" id="hPH-jK-Yan"/>
                         <outlet property="fridayReminder" destination="mHm-Ls-Lc3" id="1P7-oc-qxw"/>
                         <outlet property="habitName" destination="rkZ-wH-VU0" id="21I-X7-jda"/>
@@ -1369,8 +1421,8 @@
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

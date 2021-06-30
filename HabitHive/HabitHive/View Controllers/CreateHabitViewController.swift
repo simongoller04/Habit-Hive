@@ -29,7 +29,9 @@ class newHabit: NSObject {
 class CreateHabitViewController: UIViewController {
     
     var userDefaults = UserDefaults.standard
+    var update: (() -> Void)?
     
+    @IBOutlet weak var errorLabel: UILabel!
     var valueCounter = 0
     var isCounted: Bool = false
     var habitCounter = 8
@@ -109,24 +111,25 @@ class CreateHabitViewController: UIViewController {
     }
     
     @IBAction func addHabitButtonTapped(_ sender: Any) {
-        let newHabit = newHabit(name: habitName.text ?? "new Habit", color: UserDefaults().integer(forKey: "sectionColor") ,counted: valueCounter, addToCalendar: externalCalendar.isOn, remindMe: remindeMe.isOn)
-        
-        let habitCounterRef = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid)
-        habitCounterRef.getDocument{(document, error) in
-            if let document = document {
-                print("before: \(self.habitCounter)")
-                print(document.get("habitCounter") as! Int)
-                self.habitCounter = document.get("habitCounter") as! Int
-                print("after: \(self.habitCounter)")
+        if habitName.hasText {
+            let newHabit = newHabit(name: habitName.text ?? "new Habit", color: UserDefaults().integer(forKey: "sectionColor") ,counted: valueCounter, addToCalendar: externalCalendar.isOn, remindMe: remindeMe.isOn)
+            
+            let habitCounterRef = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid)
+            habitCounterRef.getDocument{(document, error) in
+                if let document = document {
+                    self.habitCounter = document.get("habitCounter") as! Int
+                }
+                Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("habits").document("habit\(self.habitCounter)").setData(["name": newHabit.name, "color": UserDefaults().value(forKey: "sectionColor")!, "counted": self.isCounted, "goal": newHabit.counted!, "externalCalendar": true, "remindMe": self.remindeMe.isOn, "currentCount": 0, "addFirebase": true, "streak": 0])
+                
+                habitCounterRef.updateData(["habitCounter": self.habitCounter + 1])
+                
+                self.update?()
+                self.errorLabel.isHidden = true
+                self.navigationController?.popViewController(animated: true)
             }
-            Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("habits").document("habit\(self.habitCounter)").setData(["name": newHabit.name, "color": UserDefaults().value(forKey: "sectionColor")!, "counted": self.isCounted, "goal": newHabit.counted!, "externalCalendar": true, "remindeMe": self.remindeMe.isOn])
-            
-            habitCounterRef.updateData(["habitCounter": self.habitCounter + 1])
-            
-            self.navigationController?.popViewController(animated: true)
-//            let habitVC = self.storyboard?.instantiateViewController(withIdentifier: "homeVC") as! HabitCollectionViewController
-//            habitVC.modalPresentationStyle = .fullScreen
-//            self.present(habitVC, animated: true, completion: nil)
+        }
+        else {
+            errorLabel.isHidden = false
         }
     }
 }

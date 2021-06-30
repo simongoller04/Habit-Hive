@@ -14,6 +14,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var signUpButton: UIButton!
     
     override func viewDidLoad() {
@@ -21,6 +22,8 @@ class LoginViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         setUpElements()
+        activityIndicator.color = UIColor.black
+        activityIndicator.stopAnimating()
         emailTextField.becomeFirstResponder()
     }
     
@@ -52,7 +55,7 @@ class LoginViewController: UIViewController {
                 showError(error!)
             }
             else{
-            
+                self.activityIndicator.startAnimating()
                 //create cleaned text of textfields
                 let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
                 let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -64,11 +67,12 @@ class LoginViewController: UIViewController {
                         //couldnt sign in
                         self.errorLabel.text = "Email or Password incorrect"
                         self.errorLabel.alpha = 1
+                        self.activityIndicator.stopAnimating()
                     }
                     else{
-                    
+                        self.setUpElements()
                         let tabBarViewController = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.tabBarController) as? TabBarViewController
-                     
+                        
                         self.view.window?.rootViewController = tabBarViewController
                         self.view.window?.makeKeyAndVisible()
                     }

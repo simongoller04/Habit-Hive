@@ -51,31 +51,37 @@ class SectionColorViewController: UIViewController {
     @IBAction func blueButtonPressed(_ sender: Any) {
         selectButton(button: blueButton)
         UserDefaults.standard.setValue(1, forKey: "sectionColor")
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func greenButtonPressed(_ sender: Any) {
         selectButton(button: greenButton)
         UserDefaults.standard.setValue(2, forKey: "sectionColor")
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func yellowButtonPressed(_ sender: Any) {
         selectButton(button: yellowButton)
         UserDefaults.standard.setValue(3, forKey: "sectionColor")
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func orangeButtonPressed(_ sender: Any) {
         selectButton(button: orangeButton)
         UserDefaults.standard.setValue(4, forKey: "sectionColor")
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func purpleButtonPressed(_ sender: Any) {
         selectButton(button: purpleButton)
         UserDefaults.standard.setValue(5, forKey: "sectionColor")
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func grayButtonPressed(_ sender: Any) {
         selectButton(button: grayButton)
         UserDefaults.standard.setValue(6, forKey: "sectionColor")
+        self.dismiss(animated: true, completion: nil)
     }
     
     func selectButton(button: UIButton) {
