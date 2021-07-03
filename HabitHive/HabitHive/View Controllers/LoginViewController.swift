@@ -19,7 +19,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         setUpElements()
         activityIndicator.color = UIColor.black
@@ -43,46 +43,46 @@ class LoginViewController: UIViewController {
         }
         return nil
     }
-
-
+    
+    
     @IBAction func loginTapped(_ sender: Any) {
-            //Validate Text Fields
+        //Validate Text Fields
+        
+        //validate fields
+        let error = validateFields()
+        
+        if error != nil{
+            showError(error!)
+        }
+        else{
+            self.activityIndicator.startAnimating()
+            //create cleaned text of textfields
+            let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             
-            //validate fields
-            let error = validateFields()
-            
-            if error != nil{
-                showError(error!)
-            }
-            else{
-                self.activityIndicator.startAnimating()
-                //create cleaned text of textfields
-                let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-                let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            
-                //Signing in the User
-                Auth.auth().signIn(withEmail: email, password: password) { result, error in
+            //Signing in the User
+            Auth.auth().signIn(withEmail: email, password: password) { result, error in
                 
-                    if error != nil{
-                        //couldnt sign in
-                        self.errorLabel.text = "Email or Password incorrect"
-                        self.errorLabel.alpha = 1
-                        self.activityIndicator.stopAnimating()
-                    }
-                    else{
-                        self.setUpElements()
-                        let tabBarViewController = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.tabBarController) as? TabBarViewController
-                        
-                        self.view.window?.rootViewController = tabBarViewController
-                        self.view.window?.makeKeyAndVisible()
-                    }
+                if error != nil{
+                    //couldnt sign in
+                    self.errorLabel.text = "Email or Password incorrect"
+                    self.errorLabel.alpha = 1
+                    self.activityIndicator.stopAnimating()
+                }
+                else{
+                    self.setUpElements()
+                    let tabBarViewController = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.tabBarController) as? TabBarViewController
+                    
+                    self.view.window?.rootViewController = tabBarViewController
+                    self.view.window?.makeKeyAndVisible()
                 }
             }
         }
-        
-        func showError(_ message:String){
-            errorLabel.text = message
-            errorLabel.alpha = 1
-        }
-}
+    }
     
+    func showError(_ message:String){
+        errorLabel.text = message
+        errorLabel.alpha = 1
+    }
+}
+

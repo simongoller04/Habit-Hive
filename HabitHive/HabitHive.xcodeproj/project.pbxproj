@@ -11,24 +11,20 @@
 		762609F82664FC0E0084D5C2 /* CreateHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762609F72664FC0E0084D5C2 /* CreateHabitViewController.swift */; };
 		762609FA266548690084D5C2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762609F9266548690084D5C2 /* SettingsViewController.swift */; };
 		762609FC26654B5D0084D5C2 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762609FB26654B5D0084D5C2 /* ProfileViewController.swift */; };
-		767604B62667E4B800584EF8 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767604B52667E4B800584EF8 /* NavigationViewController.swift */; };
-		767699C0267427ED002147B2 /* SettingsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767699BF267427ED002147B2 /* SettingsNavigationController.swift */; };
 		7677B56D2670C28200190C3A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7677B56C2670C28200190C3A /* GoogleService-Info.plist */; };
 		7677B5912672C46A00190C3A /* AchievementsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7677B5902672C46A00190C3A /* AchievementsCollectionViewController.swift */; };
 		7677B5932672C5E200190C3A /* AchievementsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7677B5922672C5E200190C3A /* AchievementsCollectionViewCell.swift */; };
-		767B6A3E268B1161007B75BE /* SectionColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767B6A3D268B1161007B75BE /* SectionColorViewController.swift */; };
+		767D689B268FB4C10077C474 /* EditHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767D689A268FB4C10077C474 /* EditHabitViewController.swift */; };
 		767EB02F2668EA3400BD3133 /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767EB02E2668EA3400BD3133 /* PasswordResetViewController.swift */; };
 		767EB0312668F44C00BD3133 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767EB0302668F44C00BD3133 /* ChangePasswordViewController.swift */; };
 		7692746D2663CD4F00312194 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692746C2663CD4F00312194 /* AppDelegate.swift */; };
 		7692746F2663CD4F00312194 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692746E2663CD4F00312194 /* SceneDelegate.swift */; };
-		769274712663CD4F00312194 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769274702663CD4F00312194 /* ViewController.swift */; };
 		769274762663CD5000312194 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 769274752663CD5000312194 /* Assets.xcassets */; };
 		769274792663CD5000312194 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 769274772663CD5000312194 /* LaunchScreen.storyboard */; };
 		7692749F2663CD9E00312194 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692749B2663CD9E00312194 /* SignUpViewController.swift */; };
 		769274A22663CD9E00312194 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7692749E2663CD9E00312194 /* LoginViewController.swift */; };
 		769274A52663CE5400312194 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 769274A32663CE5400312194 /* Main.storyboard */; };
 		769274BC2663ED8000312194 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769274BB2663ED8000312194 /* Constants.swift */; };
-		76A27957268B554800A224AD /* HabitNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A27956268B554800A224AD /* HabitNavigationController.swift */; };
 		76A27959268B60C300A224AD /* HabitCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A27958268B60C300A224AD /* HabitCollectionViewCell.swift */; };
 		76A2795D268B6A1E00A224AD /* HabitCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A2795C268B6A1E00A224AD /* HabitCollectionViewController.swift */; };
 		76EAEDE62686056D00B1F0E6 /* SetAmountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EAEDE52686056D00B1F0E6 /* SetAmountViewController.swift */; };
@@ -47,19 +43,16 @@
 		762609F72664FC0E0084D5C2 /* CreateHabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateHabitViewController.swift; sourceTree = "<group>"; };
 		762609F9266548690084D5C2 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		762609FB26654B5D0084D5C2 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		767604B52667E4B800584EF8 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
-		767699BF267427ED002147B2 /* SettingsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsNavigationController.swift; sourceTree = "<group>"; };
 		7677B56C2670C28200190C3A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7677B5902672C46A00190C3A /* AchievementsCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsCollectionViewController.swift; sourceTree = "<group>"; };
 		7677B5922672C5E200190C3A /* AchievementsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementsCollectionViewCell.swift; sourceTree = "<group>"; };
-		767B6A3D268B1161007B75BE /* SectionColorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionColorViewController.swift; sourceTree = "<group>"; };
 		767B6A41268B4715007B75BE /* SSHoneyCombView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SSHoneyCombView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		767D689A268FB4C10077C474 /* EditHabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHabitViewController.swift; sourceTree = "<group>"; };
 		767EB02E2668EA3400BD3133 /* PasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
 		767EB0302668F44C00BD3133 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		769274692663CD4F00312194 /* HabitHive.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HabitHive.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7692746C2663CD4F00312194 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7692746E2663CD4F00312194 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		769274702663CD4F00312194 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../ViewController.swift; sourceTree = "<group>"; };
 		769274752663CD5000312194 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		769274782663CD5000312194 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7692747A2663CD5000312194 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -67,7 +60,6 @@
 		7692749E2663CD9E00312194 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		769274A42663CE5400312194 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = HabitHiveLocalTest/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		769274BB2663ED8000312194 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		76A27956268B554800A224AD /* HabitNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitNavigationController.swift; sourceTree = "<group>"; };
 		76A27958268B60C300A224AD /* HabitCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCollectionViewCell.swift; sourceTree = "<group>"; };
 		76A2795C268B6A1E00A224AD /* HabitCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCollectionViewController.swift; sourceTree = "<group>"; };
 		76EAEDE52686056D00B1F0E6 /* SetAmountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetAmountViewController.swift; sourceTree = "<group>"; };
@@ -129,25 +121,21 @@
 		7692749A2663CD9E00312194 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				767B6A3D268B1161007B75BE /* SectionColorViewController.swift */,
 				76EAEDE72686058300B1F0E6 /* SetTimeViewController.swift */,
 				76EAEDE52686056D00B1F0E6 /* SetAmountViewController.swift */,
-				769274702663CD4F00312194 /* ViewController.swift */,
 				7692749B2663CD9E00312194 /* SignUpViewController.swift */,
 				7692749E2663CD9E00312194 /* LoginViewController.swift */,
 				762609F72664FC0E0084D5C2 /* CreateHabitViewController.swift */,
 				762609F9266548690084D5C2 /* SettingsViewController.swift */,
 				762609FB26654B5D0084D5C2 /* ProfileViewController.swift */,
-				767604B52667E4B800584EF8 /* NavigationViewController.swift */,
 				767EB02E2668EA3400BD3133 /* PasswordResetViewController.swift */,
 				767EB0302668F44C00BD3133 /* ChangePasswordViewController.swift */,
 				7677B5902672C46A00190C3A /* AchievementsCollectionViewController.swift */,
 				7677B5922672C5E200190C3A /* AchievementsCollectionViewCell.swift */,
-				767699BF267427ED002147B2 /* SettingsNavigationController.swift */,
 				76EAEDF32686161C00B1F0E6 /* TabBarViewController.swift */,
-				76A27956268B554800A224AD /* HabitNavigationController.swift */,
 				76A27958268B60C300A224AD /* HabitCollectionViewCell.swift */,
 				76A2795C268B6A1E00A224AD /* HabitCollectionViewController.swift */,
+				767D689A268FB4C10077C474 /* EditHabitViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -308,24 +296,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				767604B62667E4B800584EF8 /* NavigationViewController.swift in Sources */,
 				769274A22663CD9E00312194 /* LoginViewController.swift in Sources */,
 				76EAEDE82686058300B1F0E6 /* SetTimeViewController.swift in Sources */,
+				767D689B268FB4C10077C474 /* EditHabitViewController.swift in Sources */,
 				7677B5932672C5E200190C3A /* AchievementsCollectionViewCell.swift in Sources */,
 				7677B5912672C46A00190C3A /* AchievementsCollectionViewController.swift in Sources */,
-				769274712663CD4F00312194 /* ViewController.swift in Sources */,
 				762609FC26654B5D0084D5C2 /* ProfileViewController.swift in Sources */,
 				7692746D2663CD4F00312194 /* AppDelegate.swift in Sources */,
 				7692749F2663CD9E00312194 /* SignUpViewController.swift in Sources */,
 				767EB02F2668EA3400BD3133 /* PasswordResetViewController.swift in Sources */,
 				769274BC2663ED8000312194 /* Constants.swift in Sources */,
-				767699C0267427ED002147B2 /* SettingsNavigationController.swift in Sources */,
 				762609F82664FC0E0084D5C2 /* CreateHabitViewController.swift in Sources */,
 				76EAEDF42686161C00B1F0E6 /* TabBarViewController.swift in Sources */,
 				7692746F2663CD4F00312194 /* SceneDelegate.swift in Sources */,
 				76A2795D268B6A1E00A224AD /* HabitCollectionViewController.swift in Sources */,
-				76A27957268B554800A224AD /* HabitNavigationController.swift in Sources */,
-				767B6A3E268B1161007B75BE /* SectionColorViewController.swift in Sources */,
 				762609FA266548690084D5C2 /* SettingsViewController.swift in Sources */,
 				76EAEDE62686056D00B1F0E6 /* SetAmountViewController.swift in Sources */,
 				767EB0312668F44C00BD3133 /* ChangePasswordViewController.swift in Sources */,

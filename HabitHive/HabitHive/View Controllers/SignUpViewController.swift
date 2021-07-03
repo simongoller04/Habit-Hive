@@ -19,7 +19,7 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         firstNameTextField.becomeFirstResponder()
         setUpElements()
@@ -38,8 +38,8 @@ class SignUpViewController: UIViewController {
         
         //check that all fields are filled returns error message if not filled
         if firstNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-        lastNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-        emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            lastNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
             
             return "Please fill in all the fields"
@@ -66,8 +66,8 @@ class SignUpViewController: UIViewController {
             let lastName = lastNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-           // let achievements = String[""]
-
+            // let achievements = String[""]
+            
             
             //create the user
             Auth.auth().createUser(withEmail: email, password: password) { result, error in
@@ -92,7 +92,7 @@ class SignUpViewController: UIViewController {
                     self.transitionToHome()
                 }
             }
-           
+            
         }
     }
     
@@ -104,7 +104,7 @@ class SignUpViewController: UIViewController {
     func transitionToHome(){
         
         let tabBarViewController = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.tabBarController) as? TabBarViewController
-     
+        
         self.view.window?.rootViewController = tabBarViewController
         self.view.window?.makeKeyAndVisible()
     }

@@ -11,31 +11,11 @@ import FirebaseAuth
 
 class ProfileViewController: UIViewController {
     @IBOutlet weak var firstNameLabel: UILabel!
-    var achievements: [String] = [""]
     var numberForAchievement = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getAchievements()
         firstNameLabel.text = UserDefaults.standard.string(forKey: "firstName")
-    }
-    
-    func getAchievements(){
-        let docRef = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid)
-        docRef.getDocument{(document, error) in
-            if let document = document{
-                let property = document.get("achievements")
-                self.achievements = property as! [String]
-            }
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "achievements"{
-            getAchievements()
-            let vc = segue.destination as! AchievementsCollectionViewController
-            vc.dataSource = self.achievements
-        }
     }
     
     func addAchievement(){
@@ -46,5 +26,9 @@ class ProfileViewController: UIViewController {
     
     @IBAction func addAchievementButtonTapped(_ sender: Any) {
         addAchievement()
+    }
+    @IBAction func achievementButtonTapped(_ sender: Any) {
+        let vc = storyboard?.instantiateViewController(identifier: "AchievementsCollectionViewController") as! AchievementsCollectionViewController
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

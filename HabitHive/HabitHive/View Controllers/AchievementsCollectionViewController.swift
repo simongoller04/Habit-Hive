@@ -12,9 +12,15 @@ import Firebase
 class AchievementsCollectionViewController: UICollectionViewController {
     
     var dataSource: [String] = [""]
+    var update: (() -> Void)?
+    let dispatchGroup = DispatchGroup()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getAchievements()
+        dispatchGroup.notify(queue: .main){
+            self.collectionView.reloadData()
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -35,8 +41,20 @@ class AchievementsCollectionViewController: UICollectionViewController {
         return cell
     }
     
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func getAchievements(){
+        dispatchGroup.enter()
+        let docRef = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid)
+        docRef.getDocument{(document, error) in
+            if let document = document{
+                let property = document.get("achievements")
+                self.dataSource = property as! [String]
+                self.dispatchGroup.leave()
+            }
+        }
+    }
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         print ("Achievement: \(dataSource[indexPath.row])")
     }
 }

@@ -8,10 +8,10 @@
 import UIKit
 
 class TabBarViewController: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setUp()
     }
     
@@ -28,9 +28,9 @@ class TabBarViewController: UITabBarController {
         navHomeVC.title = "Habit Hive"
         navHomeVC.navigationBar.tintColor = UIColor(red: 252/255.0, green: 190.0/255.0, blue: 44.0/255.0, alpha: 1)
         navHomeVC.navigationBar.prefersLargeTitles = true
-       
+        
         self.setViewControllers([navHomeVC, navVC], animated: false)
         self.tabBar.tintColor = UIColor(red: 252/255.0, green: 190.0/255.0, blue: 44.0/255.0, alpha: 1)
     }
-
+    
 }

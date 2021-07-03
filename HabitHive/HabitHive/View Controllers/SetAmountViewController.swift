@@ -12,14 +12,20 @@ protocol SetAmountDelegate {
 }
 
 class SetAmountViewController: UIViewController {
-    
+    var value = 0.0
     var amountDelegate: SetAmountDelegate?
+    var editHabit = false
     
     @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var amountLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if editHabit{
+            stepper.value = value
+            amountLabel.text = String (Int (value))
+        }
     }
     
     @IBAction func step(_ sender: Any) {

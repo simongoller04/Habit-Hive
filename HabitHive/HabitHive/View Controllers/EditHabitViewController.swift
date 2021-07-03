@@ -1,25 +1,15 @@
 //
-//  CreateHabitViewController.swift
+//  EditHabitViewController.swift
 //  HabitHive
 //
-//  Created by Sebastian Weidlinger on 31.05.21.
+//  Created by Sebastian Weidlinger on 02.07.21.
 //
-import Firebase
+
 import UIKit
+import Firebase
 import FirebaseAuth
 
-class CreateHabitViewController: UIViewController {
-    
-    var userDefaults = UserDefaults.standard
-    var update: (() -> Void)?
-    var timeArray = [Int]()
-    
-    @IBOutlet weak var errorLabel: UILabel!
-    var valueCounter = 0
-    var isCounted: Bool = false
-    var habitCounter = 0
-    var typeOfHabitSelected = false
-    
+class EditHabitViewController: UIViewController {
     //Colorpicker Buttons
     @IBOutlet weak var purpleButton: UIButton!
     @IBOutlet weak var grayButton: UIButton!
@@ -28,26 +18,36 @@ class CreateHabitViewController: UIViewController {
     @IBOutlet weak var greenButton: UIButton!
     @IBOutlet weak var blueButton: UIButton!
     
+    @IBOutlet weak var habitName: UITextField!
     
+    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var timedHabit: UIButton!
     @IBOutlet weak var countedHabit: UIButton!
     @IBOutlet weak var colorPickerButton: UIButton!
+    var update: (() -> Void)?
+    var isCounted: Bool = false
+    var valueCounter = 0
+    var timeArray = [Int]()
     
-    @IBOutlet weak var errorLabelType: UILabel!
-    @IBOutlet weak var addHabit: UIButton!
-    @IBOutlet weak var habitName: UITextField!
-    
-    
-    let dispatchGroup = DispatchGroup()
+    var habit = Habit(name: "", color: 0, counted: true, goal: 0, currentCount: 0, time: [Int](), addFirebase: false, streak: 0, habitNumber: 0)
+    var indexPath = IndexPath()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         addCornerBorder()
         rotateHexagon()
         habitName.becomeFirstResponder()
+        valueCounter = habit.goal
         
-        let current = UserDefaults().integer(forKey: "sectionColor")
+        if (habit.counted) {
+            countedHabit.backgroundColor = UIColor(red: 252/255.0, green: 190.0/255.0, blue: 44.0/255.0, alpha: 1)
+            timedHabit.backgroundColor = UIColor.systemGray4
+        }
+        else {
+            timedHabit.backgroundColor = UIColor(red: 252/255.0, green: 190.0/255.0, blue: 44.0/255.0, alpha: 1)
+        }
+        
+        let current = habit.color
         
         var color = UIColor()
         switch current{
@@ -64,11 +64,12 @@ class CreateHabitViewController: UIViewController {
         default:
             color = UIColor.systemGray
         }
-        errorLabel.isHidden = true
+        UserDefaults().setValue(current, forKey: "sectionColor")
         colorPickerButton.layer.cornerRadius = 10
         colorPickerButton.tintColor = color
-        errorLabelType.isHidden = true
-        self.title = "Create a new Habit"
+        errorLabel.isHidden = true
+        self.title = "Edit your Habit"
+        habitName.text = habit.name
         tabBarController?.tabBar.isHidden = true
     }
     
@@ -121,17 +122,33 @@ class CreateHabitViewController: UIViewController {
         grayButton.layer.cornerRadius = 10
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        tabBarController?.tabBar.isHidden = false
-    }
-    
-    @IBAction func colorPickerButtonTapped(_ sender: Any) {
-        
+    @IBAction func editHabit(_ sender: Any) {
+        if habitName.hasText {
+            if (habitName.text?.count)! < 24{
+                let editHabit = Habit(name: habitName.text ?? "", color: UserDefaults().value(forKey: "sectionColor") as! Int, counted: habit.counted, goal: valueCounter, currentCount: habit.currentCount, time: habit.time, addFirebase: habit.addFirebase, streak: habit.streak, habitNumber: habit.habitNumber)
+                
+                Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("habits").document("habit\(indexPath.row)").updateData(["name": editHabit.name, "color": UserDefaults().value(forKey: "sectionColor")!, "counted": editHabit.counted, "goal": valueCounter, "currentCount": editHabit.currentCount, "timeArray": editHabit.time, "addFirebase": editHabit.addFirebase, "streak": editHabit.streak])
+                
+                
+                self.update?()
+                self.errorLabel.isHidden = true
+                self.navigationController?.popViewController(animated: true)
+            } else{
+                errorLabel.isHidden = false
+                errorLabel.text = "Your Habit name is too long!"
+            }
+        }
+        else {
+            errorLabel.isHidden = false
+            errorLabel.text = "Your Habit needs a name!"
+        }
     }
     
     @IBAction func timedButtonTapped(_ sender: Any) {
         let timeVC = storyboard?.instantiateViewController(withIdentifier: "SetTimeVC") as! SetTimeViewController
         timeVC.timeDelegate = self
+        timeVC.editHabit = true
+        timeVC.timeArray = habit.time
         isCounted = false
         present(timeVC, animated: true, completion: nil)
     }
@@ -139,62 +156,28 @@ class CreateHabitViewController: UIViewController {
     @IBAction func countedButtonTapped(_ sender: Any) {
         let amountVC = storyboard?.instantiateViewController(withIdentifier: "SetAmountVC") as! SetAmountViewController
         amountVC.amountDelegate = self
+        amountVC.value = Double (habit.goal)
+        amountVC.editHabit = true
         isCounted = true
         present(amountVC, animated: true, completion: nil)
     }
     
-    @IBAction func addHabitButtonTapped(_ sender: Any) {
-        if typeOfHabitSelected{
-            if habitName.hasText {
-                if (habitName.text?.count)! < 24{
-                    let newHabit = Habit(name: habitName.text ?? "", color: UserDefaults().value(forKey: "sectionColor") as! Int, counted: isCounted, goal: valueCounter, currentCount: valueCounter, time: timeArray, addFirebase: true, streak: 0, habitNumber: 0)
-                    
-                    let habitCounterRef = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid)
-                    habitCounterRef.getDocument{(document, error) in
-                        if let document = document {
-                            self.habitCounter = document.get("habitCounter") as! Int
-                        }
-                        Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("habits").document("habit\(self.habitCounter)").setData(["name": newHabit.name, "color": newHabit.color, "counted": newHabit.counted, "goal": newHabit.goal, "currentCount": 0, "addFirebase": true, "streak": 0, "timeArray": self.timeArray])
-                        
-                        habitCounterRef.updateData(["habitCounter": self.habitCounter + 1])
-                        
-                        self.update?()
-                        self.errorLabel.isHidden = true
-                        self.navigationController?.popViewController(animated: true)
-                    }
-                } else{
-                    errorLabelType.isHidden = true
-                    errorLabel.isHidden = false
-                    errorLabel.text = "Your Habit name is too long!"
-                }
-            }else {
-                errorLabelType.isHidden = true
-                errorLabel.isHidden = false
-                errorLabel.text = "Your Habit needs a name!"
-            }
-        }
-        else{
-            errorLabel.isHidden = true
-            errorLabelType.isHidden = false
-        }
+    override func viewWillDisappear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
     }
 }
 
-extension CreateHabitViewController: SetAmountDelegate, SetTimeDelegate {
+extension EditHabitViewController: SetAmountDelegate, SetTimeDelegate {
     
     func didTapConfirmAmount(amount: Int, color: UIColor) {
         valueCounter = amount
         countedHabit.backgroundColor = color
-        timedHabit.backgroundColor = .systemGray4
-        typeOfHabitSelected = true
+        timedHabit.backgroundColor = .systemGray5
     }
     
     func didTapConfirmTime(time: [Int], color: UIColor) {
-        countedHabit.backgroundColor = .systemGray4
+        countedHabit.backgroundColor = .systemGray5
         timedHabit.backgroundColor = color
-        typeOfHabitSelected = true
         timeArray = time
     }
 }
-
-

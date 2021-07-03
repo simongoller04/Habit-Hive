@@ -16,7 +16,7 @@ class PasswordResetViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         setUpElements()
     }
@@ -36,8 +36,8 @@ class PasswordResetViewController: UIViewController {
         }
         return nil
     }
-
-
+    
+    
     @IBAction func resetButtonTapped(_ sender: Any) {
         let validate = validateFields()
         

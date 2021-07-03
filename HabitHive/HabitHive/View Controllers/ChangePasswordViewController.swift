@@ -18,7 +18,7 @@ class ChangePasswordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         setUpElements()
     }
@@ -42,11 +42,11 @@ class ChangePasswordViewController: UIViewController {
         }
         return nil
     }
-        
-        func showError(_ message:String){
-            errorLabel.text = message
-            errorLabel.alpha = 1
-        }
+    
+    func showError(_ message:String){
+        errorLabel.text = message
+        errorLabel.alpha = 1
+    }
     
     @IBAction func changePasswordButtonTapped(_ sender: Any) {
         //Validate Text Fields
@@ -58,10 +58,10 @@ class ChangePasswordViewController: UIViewController {
             showError(error!)
         }
         else{
-        
+            
             //create cleaned text of password
             let newPassword = newPasswordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        
+            
             //Changing password of user
             Auth.auth().currentUser?.updatePassword(to: newPassword) {error in
                 if error != nil{
