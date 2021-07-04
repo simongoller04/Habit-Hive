@@ -36,6 +36,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
         editButton.isHidden = true
         habitCountLabel.isHidden = false
         streakLabel.isHidden = false
+        timerLabel.isHidden = true
         var color = UIColor()
         let current = habit.color
         switch current{

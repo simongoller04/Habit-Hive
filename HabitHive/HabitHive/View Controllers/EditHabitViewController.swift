@@ -29,12 +29,12 @@ class EditHabitViewController: UIViewController {
     var valueCounter = 0
     var timeArray = [Int]()
     
-    var habit = Habit(name: "", color: 0, counted: true, goal: 0, currentCount: 0, time: [Int](), addFirebase: false, streak: 0, habitNumber: 0)
+    var habit = Habit(name: "", color: 0, counted: true, goal: 0, currentCount: 0, time: [Int](), addFirebase: false, streak: 0, habitNumber: 0, finishedFirstTime: false, timerFinished: false)
     var indexPath = IndexPath()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addCornerBorder()
+        addCornerRadius()
         rotateHexagon()
         habitName.becomeFirstResponder()
         valueCounter = habit.goal
@@ -42,9 +42,13 @@ class EditHabitViewController: UIViewController {
         if (habit.counted) {
             countedHabit.backgroundColor = UIColor(red: 252/255.0, green: 190.0/255.0, blue: 44.0/255.0, alpha: 1)
             timedHabit.backgroundColor = UIColor.systemGray4
+            countedHabit.setTitle("Amount: \(habit.goal)", for: .normal)
+            timedHabit.setTitle("Timed", for: .normal)
         }
         else {
             timedHabit.backgroundColor = UIColor(red: 252/255.0, green: 190.0/255.0, blue: 44.0/255.0, alpha: 1)
+            countedHabit.setTitle("Counted", for: .normal)
+            timedHabit.setTitle("\(habit.time[0])\(habit.time[1]):\(habit.time[2])\(habit.time[3])", for: .normal)
         }
         
         let current = habit.color
@@ -113,7 +117,7 @@ class EditHabitViewController: UIViewController {
         colorPickerButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
     }
     
-    func addCornerBorder() {
+    func addCornerRadius() {
         blueButton.layer.cornerRadius = 10
         yellowButton.layer.cornerRadius = 10
         greenButton.layer.cornerRadius = 10
@@ -125,9 +129,9 @@ class EditHabitViewController: UIViewController {
     @IBAction func editHabit(_ sender: Any) {
         if habitName.hasText {
             if (habitName.text?.count)! < 24{
-                let editHabit = Habit(name: habitName.text ?? "", color: UserDefaults().value(forKey: "sectionColor") as! Int, counted: habit.counted, goal: valueCounter, currentCount: habit.currentCount, time: habit.time, addFirebase: habit.addFirebase, streak: habit.streak, habitNumber: habit.habitNumber)
+                let editHabit = Habit(name: habitName.text ?? "", color: UserDefaults().value(forKey: "sectionColor") as! Int, counted: habit.counted, goal: valueCounter, currentCount: habit.currentCount, time: habit.time, addFirebase: habit.addFirebase, streak: habit.streak, habitNumber: habit.habitNumber, finishedFirstTime: habit.finishedFirstTime, timerFinished: habit.timerFinished)
                 
-                Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("habits").document("habit\(indexPath.row)").updateData(["name": editHabit.name, "color": UserDefaults().value(forKey: "sectionColor")!, "counted": editHabit.counted, "goal": valueCounter, "currentCount": editHabit.currentCount, "timeArray": editHabit.time, "addFirebase": editHabit.addFirebase, "streak": editHabit.streak])
+                Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("habits").document("habit\(indexPath.row)").updateData(["name": editHabit.name, "color": UserDefaults().value(forKey: "sectionColor")!, "counted": editHabit.counted, "goal": valueCounter, "currentCount": editHabit.currentCount, "timeArray": editHabit.time, "addFirebase": editHabit.addFirebase, "streak": editHabit.streak, "timerFinished": false])
                 
                 
                 self.update?()
@@ -171,13 +175,20 @@ extension EditHabitViewController: SetAmountDelegate, SetTimeDelegate {
     
     func didTapConfirmAmount(amount: Int, color: UIColor) {
         valueCounter = amount
+        habit.counted = true
+        countedHabit.setTitle("Amount: \(amount)", for: .normal)
+        timedHabit.setTitle("Timed", for: .normal)
         countedHabit.backgroundColor = color
         timedHabit.backgroundColor = .systemGray5
     }
     
     func didTapConfirmTime(time: [Int], color: UIColor) {
+        timeArray = time
+        habit.counted = false
+        habit.time = time
         countedHabit.backgroundColor = .systemGray5
         timedHabit.backgroundColor = color
-        timeArray = time
+        countedHabit.setTitle("Counted", for: .normal)
+        timedHabit.setTitle("\(timeArray[0])\(timeArray[1]):\(timeArray[2])\(timeArray[3])", for: .normal)
     }
 }

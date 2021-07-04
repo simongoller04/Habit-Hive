@@ -21,7 +21,7 @@ class SetTimeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        fillArray()
         if editHabit {
             var time = 0.0
             var hour = 0.0
@@ -39,7 +39,6 @@ class SetTimeViewController: UIViewController {
         timePicker.setDate(date, animated: true)
         timePicker.setDate(dateTimePicker, animated: true)
         
-        fillArray()
         timePicker.addTarget(self, action: #selector(timePickerValue(sender:)), for: UIControl.Event.valueChanged)
     }
     
@@ -60,6 +59,7 @@ class SetTimeViewController: UIViewController {
         timeArray.append(1)
     }
     
+    //Sending the Value of the Datepicker in an Integer Array to the createHabitVC or editHabitVC 
     @IBAction func confirmButton(_ sender: Any) {
         timeDelegate?.didTapConfirmTime(time: timeArray, color: UIColor(red: 252/255.0, green: 190.0/255.0, blue: 44.0/255.0, alpha: 1))
         dismiss(animated: true, completion: nil)

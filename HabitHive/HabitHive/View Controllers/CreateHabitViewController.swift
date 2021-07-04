@@ -43,7 +43,7 @@ class CreateHabitViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addCornerBorder()
+        addCornerRadius()
         rotateHexagon()
         habitName.becomeFirstResponder()
         
@@ -112,7 +112,7 @@ class CreateHabitViewController: UIViewController {
         colorPickerButton.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
     }
     
-    func addCornerBorder() {
+    func addCornerRadius() {
         blueButton.layer.cornerRadius = 10
         yellowButton.layer.cornerRadius = 10
         greenButton.layer.cornerRadius = 10
@@ -147,14 +147,14 @@ class CreateHabitViewController: UIViewController {
         if typeOfHabitSelected{
             if habitName.hasText {
                 if (habitName.text?.count)! < 24{
-                    let newHabit = Habit(name: habitName.text ?? "", color: UserDefaults().value(forKey: "sectionColor") as! Int, counted: isCounted, goal: valueCounter, currentCount: valueCounter, time: timeArray, addFirebase: true, streak: 0, habitNumber: 0)
+                    let newHabit = Habit(name: habitName.text ?? "", color: UserDefaults().value(forKey: "sectionColor") as! Int, counted: isCounted, goal: valueCounter, currentCount: valueCounter, time: timeArray, addFirebase: true, streak: 0, habitNumber: 0, finishedFirstTime: true, timerFinished: false)
                     
                     let habitCounterRef = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid)
                     habitCounterRef.getDocument{(document, error) in
                         if let document = document {
                             self.habitCounter = document.get("habitCounter") as! Int
                         }
-                        Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("habits").document("habit\(self.habitCounter)").setData(["name": newHabit.name, "color": newHabit.color, "counted": newHabit.counted, "goal": newHabit.goal, "currentCount": 0, "addFirebase": true, "streak": 0, "timeArray": self.timeArray])
+                        Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("habits").document("habit\(self.habitCounter)").setData(["name": newHabit.name, "color": newHabit.color, "counted": newHabit.counted, "goal": newHabit.goal, "currentCount": 0, "addFirebase": true, "streak": 0, "timeArray": self.timeArray, "timerFinished": newHabit.timerFinished])
                         
                         habitCounterRef.updateData(["habitCounter": self.habitCounter + 1])
                         
@@ -184,16 +184,20 @@ extension CreateHabitViewController: SetAmountDelegate, SetTimeDelegate {
     
     func didTapConfirmAmount(amount: Int, color: UIColor) {
         valueCounter = amount
+        countedHabit.setTitle("Amount: \(amount)", for: .normal)
+        timedHabit.setTitle("Timed", for: .normal)
         countedHabit.backgroundColor = color
         timedHabit.backgroundColor = .systemGray4
         typeOfHabitSelected = true
     }
     
     func didTapConfirmTime(time: [Int], color: UIColor) {
+        timeArray = time
         countedHabit.backgroundColor = .systemGray4
+        countedHabit.setTitle("Counted", for: .normal)
+        timedHabit.setTitle("\(timeArray[0])\(timeArray[1]):\(timeArray[2])\(timeArray[3])", for: .normal)
         timedHabit.backgroundColor = color
         typeOfHabitSelected = true
-        timeArray = time
     }
 }
 

@@ -32,6 +32,7 @@ class SetAmountViewController: UIViewController {
         amountLabel.text = String (Int (stepper.value))
     }
     
+    //Sending the Value of the Stepper to the createHabitVC or editHabitVC 
     @IBAction func confirmButtonTapped(_ sender: Any) {
         amountDelegate?.didTapConfirmAmount(amount: Int(stepper.value), color: UIColor(red: 252/255.0, green: 190.0/255.0, blue: 44.0/255.0, alpha: 1))
         dismiss(animated: true, completion: nil)
