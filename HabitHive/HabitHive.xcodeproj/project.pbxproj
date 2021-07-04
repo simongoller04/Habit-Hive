@@ -26,6 +26,13 @@
 		769274A52663CE5400312194 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 769274A32663CE5400312194 /* Main.storyboard */; };
 		769274BC2663ED8000312194 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769274BB2663ED8000312194 /* Constants.swift */; };
 		76A006322690DD4C003F3D4F /* PulseAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A006312690DD4C003F3D4F /* PulseAnimation.swift */; };
+		76A006372692375E003F3D4F /* icon180.png in Resources */ = {isa = PBXBuildFile; fileRef = 76A006362692375E003F3D4F /* icon180.png */; };
+		76A00639269237BA003F3D4F /* icon120.png in Resources */ = {isa = PBXBuildFile; fileRef = 76A00638269237BA003F3D4F /* icon120.png */; };
+		76A0063B2692382A003F3D4F /* icon87.png in Resources */ = {isa = PBXBuildFile; fileRef = 76A0063A2692382A003F3D4F /* icon87.png */; };
+		76A0063D26923895003F3D4F /* icon80.png in Resources */ = {isa = PBXBuildFile; fileRef = 76A0063C26923895003F3D4F /* icon80.png */; };
+		76A0063F269238E1003F3D4F /* icon60.png in Resources */ = {isa = PBXBuildFile; fileRef = 76A0063E269238E1003F3D4F /* icon60.png */; };
+		76A0064126923940003F3D4F /* icon58.png in Resources */ = {isa = PBXBuildFile; fileRef = 76A0064026923940003F3D4F /* icon58.png */; };
+		76A0064326923974003F3D4F /* icon40.png in Resources */ = {isa = PBXBuildFile; fileRef = 76A0064226923974003F3D4F /* icon40.png */; };
 		76A27959268B60C300A224AD /* HabitCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A27958268B60C300A224AD /* HabitCollectionViewCell.swift */; };
 		76A2795D268B6A1E00A224AD /* HabitCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A2795C268B6A1E00A224AD /* HabitCollectionViewController.swift */; };
 		76EAEDE62686056D00B1F0E6 /* SetAmountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EAEDE52686056D00B1F0E6 /* SetAmountViewController.swift */; };
@@ -62,6 +69,13 @@
 		769274A42663CE5400312194 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = HabitHiveLocalTest/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		769274BB2663ED8000312194 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		76A006312690DD4C003F3D4F /* PulseAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PulseAnimation.swift; sourceTree = "<group>"; };
+		76A006362692375E003F3D4F /* icon180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon180.png; sourceTree = "<group>"; };
+		76A00638269237BA003F3D4F /* icon120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon120.png; sourceTree = "<group>"; };
+		76A0063A2692382A003F3D4F /* icon87.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon87.png; sourceTree = "<group>"; };
+		76A0063C26923895003F3D4F /* icon80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon80.png; sourceTree = "<group>"; };
+		76A0063E269238E1003F3D4F /* icon60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon60.png; sourceTree = "<group>"; };
+		76A0064026923940003F3D4F /* icon58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon58.png; sourceTree = "<group>"; };
+		76A0064226923974003F3D4F /* icon40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon40.png; sourceTree = "<group>"; };
 		76A27958268B60C300A224AD /* HabitCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCollectionViewCell.swift; sourceTree = "<group>"; };
 		76A2795C268B6A1E00A224AD /* HabitCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitCollectionViewController.swift; sourceTree = "<group>"; };
 		76EAEDE52686056D00B1F0E6 /* SetAmountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetAmountViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +120,7 @@
 		7692746B2663CD4F00312194 /* HabitHive */ = {
 			isa = PBXGroup;
 			children = (
+				76A00633269235CA003F3D4F /* Icons */,
 				EC24384326651A91009ABA22 /* Images */,
 				7692746C2663CD4F00312194 /* AppDelegate.swift */,
 				7692746E2663CD4F00312194 /* SceneDelegate.swift */,
@@ -124,21 +139,21 @@
 		7692749A2663CD9E00312194 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				76EAEDE72686058300B1F0E6 /* SetTimeViewController.swift */,
-				76EAEDE52686056D00B1F0E6 /* SetAmountViewController.swift */,
-				7692749B2663CD9E00312194 /* SignUpViewController.swift */,
-				7692749E2663CD9E00312194 /* LoginViewController.swift */,
-				762609F72664FC0E0084D5C2 /* CreateHabitViewController.swift */,
-				762609F9266548690084D5C2 /* SettingsViewController.swift */,
-				762609FB26654B5D0084D5C2 /* ProfileViewController.swift */,
-				767EB02E2668EA3400BD3133 /* PasswordResetViewController.swift */,
-				767EB0302668F44C00BD3133 /* ChangePasswordViewController.swift */,
-				7677B5902672C46A00190C3A /* AchievementsCollectionViewController.swift */,
 				7677B5922672C5E200190C3A /* AchievementsCollectionViewCell.swift */,
-				76EAEDF32686161C00B1F0E6 /* TabBarViewController.swift */,
+				7677B5902672C46A00190C3A /* AchievementsCollectionViewController.swift */,
+				767EB0302668F44C00BD3133 /* ChangePasswordViewController.swift */,
+				762609F72664FC0E0084D5C2 /* CreateHabitViewController.swift */,
+				767D689A268FB4C10077C474 /* EditHabitViewController.swift */,
 				76A27958268B60C300A224AD /* HabitCollectionViewCell.swift */,
 				76A2795C268B6A1E00A224AD /* HabitCollectionViewController.swift */,
-				767D689A268FB4C10077C474 /* EditHabitViewController.swift */,
+				7692749E2663CD9E00312194 /* LoginViewController.swift */,
+				767EB02E2668EA3400BD3133 /* PasswordResetViewController.swift */,
+				762609FB26654B5D0084D5C2 /* ProfileViewController.swift */,
+				76EAEDE52686056D00B1F0E6 /* SetAmountViewController.swift */,
+				76EAEDE72686058300B1F0E6 /* SetTimeViewController.swift */,
+				762609F9266548690084D5C2 /* SettingsViewController.swift */,
+				7692749B2663CD9E00312194 /* SignUpViewController.swift */,
+				76EAEDF32686161C00B1F0E6 /* TabBarViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -157,6 +172,20 @@
 				76A006312690DD4C003F3D4F /* PulseAnimation.swift */,
 			);
 			path = Animations;
+			sourceTree = "<group>";
+		};
+		76A00633269235CA003F3D4F /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				76A0064226923974003F3D4F /* icon40.png */,
+				76A0064026923940003F3D4F /* icon58.png */,
+				76A0063E269238E1003F3D4F /* icon60.png */,
+				76A0063C26923895003F3D4F /* icon80.png */,
+				76A0063A2692382A003F3D4F /* icon87.png */,
+				76A00638269237BA003F3D4F /* icon120.png */,
+				76A006362692375E003F3D4F /* icon180.png */,
+			);
+			path = Icons;
 			sourceTree = "<group>";
 		};
 		8E1B1EF5D625D7B78B9C3B83 /* Frameworks */ = {
@@ -249,12 +278,19 @@
 			files = (
 				769274A52663CE5400312194 /* Main.storyboard in Resources */,
 				769274792663CD5000312194 /* LaunchScreen.storyboard in Resources */,
+				76A0063D26923895003F3D4F /* icon80.png in Resources */,
+				76A0063F269238E1003F3D4F /* icon60.png in Resources */,
+				76A0064326923974003F3D4F /* icon40.png in Resources */,
 				76EAEDEA26860A7700B1F0E6 /* HabitHiveLogo.png in Resources */,
 				76EAEDF02686120000B1F0E6 /* Trophy2.png in Resources */,
 				76EAEDEF2686120000B1F0E6 /* Trophy3.png in Resources */,
+				76A0064126923940003F3D4F /* icon58.png in Resources */,
 				769274762663CD5000312194 /* Assets.xcassets in Resources */,
+				76A00639269237BA003F3D4F /* icon120.png in Resources */,
 				7677B56D2670C28200190C3A /* GoogleService-Info.plist in Resources */,
 				76EAEDF22686127700B1F0E6 /* Trophy4.png in Resources */,
+				76A0063B2692382A003F3D4F /* icon87.png in Resources */,
+				76A006372692375E003F3D4F /* icon180.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,7 +519,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.habithive.habithive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -503,7 +539,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.habithive.habithive;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
