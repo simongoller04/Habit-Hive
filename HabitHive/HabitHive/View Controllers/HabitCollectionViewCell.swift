@@ -6,6 +6,12 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+
+protocol TimerFinishedDelegate {
+    func showAlert(cell: HabitCollectionViewCell, indexPathCell: IndexPath)
+}
 
 class HabitCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var habitNameLabel: UILabel!
@@ -15,6 +21,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var checkMarkImage: UIImageView!
     
     //Timer variables
     var timer = Timer()
@@ -25,9 +32,19 @@ class HabitCollectionViewCell: UICollectionViewCell {
     var timeDisplayedMinutePrev = 0
     var timeDisplayedSecondPrev = 0
     var startVar = false
+    var timeArray = [Int]()
+    var timeArrayFirebase: Any?
+    
+    var counted: Bool?
+    
+    //delegate
+    var habitCell: Habit?
+    public var timerDelegate: TimerFinishedDelegate?
+    var indexPathCell: IndexPath?
     
     
     func configure(with habit: Habit) {
+        habitCell = habit
         habitNameLabel.text = habit.name
         habitCountLabel.text = "\(habit.currentCount)/\(habit.goal)"
         streakLabel.text = "Streak: \(habit.streak)"
@@ -37,6 +54,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
         habitCountLabel.isHidden = false
         streakLabel.isHidden = false
         timerLabel.isHidden = true
+        checkMarkImage.isHidden = true
         var color = UIColor()
         let current = habit.color
         switch current{
@@ -58,50 +76,69 @@ class HabitCollectionViewCell: UICollectionViewCell {
         
         if habit.counted {
             habitCountLabel.text = "\(habit.currentCount)/\(habit.goal)"
+        } else {
+            let dispatchGroupStart = DispatchGroup()
+            fetchTimeFromFirebase(indexPath: indexPathCell!, dispatchGroup: dispatchGroupStart)
         }
-        else {
-            timeDisplayedHour = habit.time[0] * 10 + habit.time[1]
-            timeDisplayedMinute = habit.time[2] * 10 + habit.time[3]
-            
-            if timeDisplayedHour < 10 {
-                if timeDisplayedMinute < 10 {
-                    habitCountLabel.text = "0\(timeDisplayedHour):0\(timeDisplayedMinute):00"
-                    timerLabel.text = "0\(timeDisplayedHour):0\(timeDisplayedMinute):00"
-                }
-                else {
-                    habitCountLabel.text = "0\(timeDisplayedHour):\(timeDisplayedMinute):00"
-                    timerLabel.text = "0\(timeDisplayedHour):\(timeDisplayedMinute):00"
-                }
-            }
-            
-            else {
-                if timeDisplayedMinute < 10 {
-                    habitCountLabel.text = "\(timeDisplayedHour):0\(timeDisplayedMinute):00"
-                    timerLabel.text = "\(timeDisplayedHour):0\(timeDisplayedMinute):00"
-                }
-                else {
-                    habitCountLabel.text = "\(timeDisplayedHour):\(timeDisplayedMinute):00"
-                    timerLabel.text = "\(timeDisplayedHour):\(timeDisplayedMinute):00"
-                }
-            }
+        if (!habit.addFirebase) {
+            checkMarkImage.isHidden = false
         }
     }
     
     func startCountdown(CV: UICollectionView, index: IndexPath, start: Bool) {
-        startVar = start
-        if startVar == true {
-            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(Action), userInfo: nil, repeats: startVar)
+        self.startVar = start
+        let dispatchGroupCountdown = DispatchGroup()
+        if self.startVar == true {
+            self.fetchTimeFromFirebase(indexPath: index, dispatchGroup: dispatchGroupCountdown)
+            dispatchGroupCountdown.notify(queue: .main){
+                self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.Action), userInfo: nil, repeats: self.startVar)
+            }
         }
         else {
-            timer.invalidate()
+            self.timer.invalidate()
+            createTimeArray(indexPath: index)
         }
+    }
+    
+    //fetching time from firebase for timer
+    func fetchTimeFromFirebase(indexPath: IndexPath, dispatchGroup: DispatchGroup){
+        dispatchGroup.enter()
+        Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("habits").document("habit\(indexPath.row)").getDocument{(document, error) in
+            if let document = document{
+                self.timeArrayFirebase = document.get("timeArray")
+                
+                let result = self.timeArrayFirebase as! [Int]
+                self.timeDisplayedHour = (result[0]) * 10 + (result[1])
+                self.timeDisplayedMinute = (result[2]) * 10 + (result[3])
+                self.timeDisplayedSecond = (result[4]) * 10 + (result[5])
+            }
+            dispatchGroup.leave()
+        }
+        dispatchGroup.notify(queue: .main){
+            if (self.counted == false){
+                self.setTimerLabels()
+            }
+        }
+    }
+    
+    //create time array for saving in firebase
+    func createTimeArray(indexPath: IndexPath) {
+        timeArray.removeAll()
+        timeArray.append(Int(timeDisplayedHour / 10))
+        timeArray.append(timeDisplayedHour % 10)
+        timeArray.append(Int(timeDisplayedMinute / 10))
+        timeArray.append(timeDisplayedMinute % 10)
+        timeArray.append(Int(timeDisplayedSecond / 10))
+        timeArray.append(timeDisplayedSecond % 10)
+        
+        Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("habits").document("habit\(indexPath.row)").updateData(["timeArray": timeArray])
     }
     
     @objc func Action() {
         if timeDisplayedHour == 0 && timeDisplayedMinute == 0 && timeDisplayedSecond == 0 {
             timer.invalidate()
+            timerDelegate?.showAlert(cell: self, indexPathCell: indexPathCell!)
         }
-        
         else {
             if timeDisplayedSecond == 0 {
                 timeDisplayedMinutePrev = timeDisplayedMinute
@@ -166,6 +203,54 @@ class HabitCollectionViewCell: UICollectionViewCell {
                         habitCountLabel.text = "\(timeDisplayedHour):\(timeDisplayedMinute):\(timeDisplayedSecond)"
                         timerLabel.text = "\(timeDisplayedHour):\(timeDisplayedMinute):\(timeDisplayedSecond)"
                     }
+                }
+            }
+        }
+    }
+    
+    func setTimerLabels(){
+        if timeDisplayedHour < 10 {
+            if timeDisplayedMinute < 10 {
+                if timeDisplayedSecond < 10 {
+                    habitCountLabel.text = "0\(timeDisplayedHour):0\(timeDisplayedMinute):0\(timeDisplayedSecond)"
+                    timerLabel.text = "0\(timeDisplayedHour):0\(timeDisplayedMinute):0\(timeDisplayedSecond)"
+                }
+                else {
+                    habitCountLabel.text = "0\(timeDisplayedHour):0\(timeDisplayedMinute):\(timeDisplayedSecond)"
+                    timerLabel.text = "0\(timeDisplayedHour):0\(timeDisplayedMinute):\(timeDisplayedSecond)"
+                }
+            }
+            else {
+                if timeDisplayedSecond < 10 {
+                    habitCountLabel.text = "0\(timeDisplayedHour):\(timeDisplayedMinute):0\(timeDisplayedSecond)"
+                    timerLabel.text = "0\(timeDisplayedHour):\(timeDisplayedMinute):0\(timeDisplayedSecond)"
+                }
+                else {
+                    habitCountLabel.text = "0\(timeDisplayedHour):\(timeDisplayedMinute):\(timeDisplayedSecond)"
+                    timerLabel.text = "0\(timeDisplayedHour):\(timeDisplayedMinute):\(timeDisplayedSecond)"
+                }
+            }
+        }
+        
+        else {
+            if timeDisplayedMinute < 10 {
+                if timeDisplayedSecond < 10 {
+                    habitCountLabel.text = "\(timeDisplayedHour):0\(timeDisplayedMinute):0\(timeDisplayedSecond)"
+                    timerLabel.text = "\(timeDisplayedHour):0\(timeDisplayedMinute):0\(timeDisplayedSecond)"
+                }
+                else {
+                    habitCountLabel.text = "\(timeDisplayedHour):0\(timeDisplayedMinute):\(timeDisplayedSecond)"
+                    timerLabel.text = "\(timeDisplayedHour):0\(timeDisplayedMinute):\(timeDisplayedSecond)"
+                }
+            }
+            else {
+                if timeDisplayedSecond < 10 {
+                    habitCountLabel.text = "\(timeDisplayedHour):\(timeDisplayedMinute):0\(timeDisplayedSecond)"
+                    timerLabel.text = "\(timeDisplayedHour):\(timeDisplayedMinute):0\(timeDisplayedSecond)"
+                }
+                else {
+                    habitCountLabel.text = "\(timeDisplayedHour):\(timeDisplayedMinute):\(timeDisplayedSecond)"
+                    timerLabel.text = "\(timeDisplayedHour):\(timeDisplayedMinute):\(timeDisplayedSecond)"
                 }
             }
         }

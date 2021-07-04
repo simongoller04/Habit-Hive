@@ -147,14 +147,25 @@ class CreateHabitViewController: UIViewController {
         if typeOfHabitSelected{
             if habitName.hasText {
                 if (habitName.text?.count)! < 24{
-                    let newHabit = Habit(name: habitName.text ?? "", color: UserDefaults().value(forKey: "sectionColor") as! Int, counted: isCounted, goal: valueCounter, currentCount: valueCounter, time: timeArray, addFirebase: true, streak: 0, habitNumber: 0, finishedFirstTime: true, timerFinished: false)
+                    let newHabit = Habit(name: habitName.text ?? "", color: UserDefaults().value(forKey: "sectionColor") as? Int ?? 6, counted: isCounted, goal: valueCounter, currentCount: valueCounter, time: timeArray, addFirebase: true, streak: 0, habitNumber: 0, finishedFirstTime: true)
                     
                     let habitCounterRef = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid)
                     habitCounterRef.getDocument{(document, error) in
                         if let document = document {
                             self.habitCounter = document.get("habitCounter") as! Int
                         }
-                        Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("habits").document("habit\(self.habitCounter)").setData(["name": newHabit.name, "color": newHabit.color, "counted": newHabit.counted, "goal": newHabit.goal, "currentCount": 0, "addFirebase": true, "streak": 0, "timeArray": self.timeArray, "timerFinished": newHabit.timerFinished])
+                        
+                        //to fix bug with counted habits when timed
+                        if (newHabit.counted){
+                            self.timeArray.append(0)
+                            self.timeArray.append(0)
+                            self.timeArray.append(0)
+                            self.timeArray.append(0)
+                            self.timeArray.append(0)
+                            self.timeArray.append(0)
+                        }
+                        
+                        Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("habits").document("habit\(self.habitCounter)").setData(["name": newHabit.name, "color": newHabit.color, "counted": newHabit.counted, "goal": newHabit.goal, "currentCount": 0, "addFirebase": true, "streak": 0, "timeArray": self.timeArray])
                         
                         habitCounterRef.updateData(["habitCounter": self.habitCounter + 1])
                         

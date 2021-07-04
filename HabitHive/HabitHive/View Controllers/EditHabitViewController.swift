@@ -29,7 +29,7 @@ class EditHabitViewController: UIViewController {
     var valueCounter = 0
     var timeArray = [Int]()
     
-    var habit = Habit(name: "", color: 0, counted: true, goal: 0, currentCount: 0, time: [Int](), addFirebase: false, streak: 0, habitNumber: 0, finishedFirstTime: false, timerFinished: false)
+    var habit = Habit(name: "", color: 0, counted: true, goal: 0, currentCount: 0, time: [Int](), addFirebase: false, streak: 0, habitNumber: 0, finishedFirstTime: false)
     var indexPath = IndexPath()
     
     override func viewDidLoad() {
@@ -129,10 +129,9 @@ class EditHabitViewController: UIViewController {
     @IBAction func editHabit(_ sender: Any) {
         if habitName.hasText {
             if (habitName.text?.count)! < 24{
-                let editHabit = Habit(name: habitName.text ?? "", color: UserDefaults().value(forKey: "sectionColor") as! Int, counted: habit.counted, goal: valueCounter, currentCount: habit.currentCount, time: habit.time, addFirebase: habit.addFirebase, streak: habit.streak, habitNumber: habit.habitNumber, finishedFirstTime: habit.finishedFirstTime, timerFinished: habit.timerFinished)
+                let editHabit = Habit(name: habitName.text ?? "", color: UserDefaults().value(forKey: "sectionColor") as! Int, counted: habit.counted, goal: valueCounter, currentCount: 0, time: habit.time, addFirebase: true, streak: habit.streak, habitNumber: habit.habitNumber, finishedFirstTime: habit.finishedFirstTime)
                 
-                Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("habits").document("habit\(indexPath.row)").updateData(["name": editHabit.name, "color": UserDefaults().value(forKey: "sectionColor")!, "counted": editHabit.counted, "goal": valueCounter, "currentCount": editHabit.currentCount, "timeArray": editHabit.time, "addFirebase": editHabit.addFirebase, "streak": editHabit.streak, "timerFinished": false])
-                
+                Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("habits").document("habit\(indexPath.row)").updateData(["name": editHabit.name, "color": UserDefaults().value(forKey: "sectionColor")!, "counted": editHabit.counted, "goal": valueCounter, "currentCount": editHabit.currentCount, "timeArray": editHabit.time, "addFirebase": editHabit.addFirebase, "streak": editHabit.streak])
                 
                 self.update?()
                 self.errorLabel.isHidden = true

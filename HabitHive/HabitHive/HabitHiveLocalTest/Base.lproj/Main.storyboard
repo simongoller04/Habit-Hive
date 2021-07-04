@@ -227,9 +227,18 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="jMT-IX-5uc">
+                                            <rect key="frame" x="115" y="124.66666666666666" width="50" height="48.666666666666671"/>
+                                            <color key="tintColor" red="0.0" green="0.60784313725490191" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="1g6-Kx-eEN"/>
+                                                <constraint firstAttribute="height" constant="50" id="X42-eX-VGd"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="gKD-dQ-ed3" firstAttribute="centerY" secondItem="Qpo-8S-nyd" secondAttribute="centerY" multiplier="0.72" id="76X-qd-nX2"/>
+                                        <constraint firstItem="jMT-IX-5uc" firstAttribute="centerY" secondItem="Qpo-8S-nyd" secondAttribute="centerY" multiplier="1.7" id="9cO-Tf-nva"/>
                                         <constraint firstItem="wwg-Nj-d7M" firstAttribute="centerX" secondItem="Qpo-8S-nyd" secondAttribute="centerX" id="Jqa-PP-eri"/>
                                         <constraint firstItem="YN7-Dt-6q8" firstAttribute="top" secondItem="0Vv-a0-aVh" secondAttribute="bottom" constant="10" id="Jqa-kl-OpX"/>
                                         <constraint firstItem="YN7-Dt-6q8" firstAttribute="centerY" secondItem="Qpo-8S-nyd" secondAttribute="centerY" id="JyA-Dw-FHR"/>
@@ -237,6 +246,7 @@
                                         <constraint firstItem="wwg-Nj-d7M" firstAttribute="centerY" secondItem="Qpo-8S-nyd" secondAttribute="centerY" id="S8K-6c-kbL"/>
                                         <constraint firstItem="Tfu-Xy-gja" firstAttribute="top" secondItem="YN7-Dt-6q8" secondAttribute="bottom" constant="10" id="WXU-Ca-N0u"/>
                                         <constraint firstItem="gKD-dQ-ed3" firstAttribute="centerX" secondItem="Qpo-8S-nyd" secondAttribute="centerX" id="a6x-tI-YGu"/>
+                                        <constraint firstItem="jMT-IX-5uc" firstAttribute="centerX" secondItem="Qpo-8S-nyd" secondAttribute="centerX" multiplier="1.6" id="aAQ-AU-sRs"/>
                                         <constraint firstAttribute="trailing" secondItem="u3o-WB-a2l" secondAttribute="trailing" id="flO-tG-TMZ"/>
                                         <constraint firstItem="wwg-Nj-d7M" firstAttribute="leading" secondItem="Qpo-8S-nyd" secondAttribute="leading" constant="23" id="lyi-0d-c86"/>
                                         <constraint firstItem="0Vv-a0-aVh" firstAttribute="centerX" secondItem="Qpo-8S-nyd" secondAttribute="centerX" id="mEF-QY-v5b"/>
@@ -250,6 +260,7 @@
                                     </constraints>
                                 </collectionViewCellContentView>
                                 <connections>
+                                    <outlet property="checkMarkImage" destination="jMT-IX-5uc" id="JHc-Sy-S0B"/>
                                     <outlet property="deleteButton" destination="1Gt-Ob-cEe" id="CjI-Ac-uVr"/>
                                     <outlet property="editButton" destination="gKD-dQ-ed3" id="gCP-K5-amC"/>
                                     <outlet property="habitCountLabel" destination="Tfu-Xy-gja" id="JhJ-gD-Dd0"/>
@@ -1556,6 +1567,7 @@
     <color key="tintColor" red="0.93218002239999997" green="0.74364480129999999" blue="0.1926953444" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
     <resources>
         <image name="HabitHiveLogo.png" width="612" height="905"/>
+        <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="hexagon.fill" catalog="system" width="128" height="124"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="labelColor">

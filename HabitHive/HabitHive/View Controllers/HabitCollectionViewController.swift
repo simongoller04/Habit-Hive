@@ -42,13 +42,14 @@ class HabitCollectionViewController: UICollectionViewController, UIGestureRecogn
     override func viewWillAppear(_ animated: Bool) {
         let today = Date()
         let calendar = Calendar.current
-        let comps = calendar.dateComponents([.day, .month, .year, .minute], from: today)
+        let comps = calendar.dateComponents([.day, .month, .year], from: today)
         let currentDay = calendar.date(from: comps)
         let yesterday = UserDefaults.standard.object(forKey: "palmiIsCool")
         let dispatchGroupTest = DispatchGroup()
         
         if(currentDay != yesterday as? Date) {
             dispatchGroupTest.enter()
+            Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).updateData(["finishedHabits": 0])
             let habitRef = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("habits")
             if (habitArray.count - 1 > -1){
                 for n in 0...habitArray.count - 1 {
@@ -60,12 +61,11 @@ class HabitCollectionViewController: UICollectionViewController, UIGestureRecogn
                         habitArray[n].streak += 1
                     }
                     habitArray[n].addFirebase = true
-                    habitArray[n].timerFinished = false
                 }
                 var achievementName = [String]()
                 for n in 0...habitArray.count - 1 {
-                    habitRef.document("habit\(n)").updateData(["currentCount": 0, "goal": habitArray[n].goal, "name": habitArray[n].name,"timeArray": habitArray[n].time, "addFirebase": habitArray[n].addFirebase, "streak": habitArray[n].streak, "timerFinished": habitArray[n].timerFinished])
-                    if (habitArray[n].streak == 10){
+                    habitRef.document("habit\(n)").updateData(["currentCount": 0, "goal": habitArray[n].goal, "name": habitArray[n].name,"timeArray": habitArray[n].time, "addFirebase": habitArray[n].addFirebase, "streak": habitArray[n].streak])
+                    if (habitArray[n].streak == 1){
                         achievementName.append("\(habitArray[n].name) for 10 days")
                         Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).updateData(["achievements": achievementName])
                     }
@@ -83,6 +83,27 @@ class HabitCollectionViewController: UICollectionViewController, UIGestureRecogn
             }
             dispatchGroupTest.notify(queue: .main){
                 self.collectionView.reloadData()
+            }
+        }
+    }
+    
+    func authenticateUser() -> Bool {
+        if Auth.auth().currentUser == nil {
+            DispatchQueue.main.async {
+                let navVC = self.storyboard?.instantiateViewController(identifier: "NavigationVC")
+                self.present(navVC!, animated: true, completion: nil)
+            }
+            return false
+        }
+        return true
+    }
+    
+    func getFirstName(){
+        let docRef = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid)
+        docRef.getDocument{(document, error) in
+            if let document = document{
+                let property = document.get("firstName")
+                UserDefaults.standard.set(property as! String, forKey: "firstName")
             }
         }
     }
@@ -125,7 +146,9 @@ class HabitCollectionViewController: UICollectionViewController, UIGestureRecogn
             cell.editButton.isHidden = false
             cell.habitCountLabel.isHidden = true
             cell.streakLabel.isHidden = true
-            cell.startCountdown(CV: collectionView, index: indexPath, start: false)
+            if (!habitArray[indexPath.row].counted){
+                cell.startCountdown(CV: collectionView, index: indexPath, start: false)
+            }
             indexPathGlobal = indexPath
             cellsWhichAreLongPressed.append(cell)
             let current = habitArray[indexPath.row].color
@@ -180,27 +203,6 @@ class HabitCollectionViewController: UICollectionViewController, UIGestureRecogn
         }
     }
     
-    func authenticateUser() -> Bool {
-        if Auth.auth().currentUser == nil {
-            DispatchQueue.main.async {
-                let navVC = self.storyboard?.instantiateViewController(identifier: "NavigationVC")
-                self.present(navVC!, animated: true, completion: nil)
-            }
-            return false
-        }
-        return true
-    }
-    
-    func getFirstName(){
-        let docRef = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid)
-        docRef.getDocument{(document, error) in
-            if let document = document{
-                let property = document.get("firstName")
-                UserDefaults.standard.set(property as! String, forKey: "firstName")
-            }
-        }
-    }
-    
     @objc func addButtonTapped(){
         let vc = storyboard?.instantiateViewController(identifier: "CreateHabitVC") as! CreateHabitViewController
         vc.update = {
@@ -219,6 +221,9 @@ class HabitCollectionViewController: UICollectionViewController, UIGestureRecogn
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let habitCell = collectionView.dequeueReusableCell(withReuseIdentifier: "habitCell", for: indexPath) as! HabitCollectionViewCell
+        habitCell.timerDelegate = self
+        habitCell.indexPathCell = indexPath
+        habitCell.counted = habitArray[indexPath.row].counted
         habitCell.configure(with: habitArray[indexPath.row])
         habitCell.deleteButton.addTarget(self, action: #selector(deleteHabit(_:)), for: .touchUpInside)
         habitCell.editButton.addTarget(self, action: #selector(editHabit(_:)), for: .touchUpInside)
@@ -273,87 +278,93 @@ class HabitCollectionViewController: UICollectionViewController, UIGestureRecogn
         let yesterday = calendar.date(from: component)
         UserDefaults.standard.setValue(yesterday, forKey: "palmiIsCool")
         
-        if (selectedCell.deleteButton.isHidden == false){
-            collectionView.reloadItems(at: [indexPath])
+        if (!habitArray[indexPath.row].addFirebase){
+            if (selectedCell.deleteButton.isHidden == false){
+                collectionView.reloadItems(at: [indexPath])
+            }
         }
         else{
-            if habitArray[indexPath.row].counted == false {
-                if selectedCell.startVar == true {
-                    selectedCell.startCountdown(CV: collectionView, index: indexPath, start: false)
-                    selectedCell.habitNameLabel.isHidden = false
-                    selectedCell.streakLabel.isHidden = false
-                    selectedCell.habitCountLabel.isHidden = false
-                    selectedCell.timerLabel.isHidden = true
-                    //                    var timeString = selectedCell.habitCountLabel.text
-                    //                    selectedCell.timeDisplayedHour
-                    //                    var timeArray = [Int]
-                    //                    for char in timeString {
-                    //                        timeArray.append(char.wholeNumberValue!)
-                    //                    }
+            if (selectedCell.deleteButton.isHidden == false){
+                collectionView.reloadItems(at: [indexPath])
+            }
+            else{
+                if habitArray[indexPath.row].counted == false {
+                    UIView.animate(withDuration: 0.5){
+                        selectedCell.imageView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                    }
+                    UIView.animate(withDuration: 0.5, delay: 0.5){
+                        selectedCell.imageView.transform = CGAffineTransform(scaleX: 1, y: 1)
+                    }
+                    UIView.animate(withDuration: 0.5, delay: 1){
+                        selectedCell.imageView.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
+                    }
+                    if selectedCell.startVar == true {
+                        selectedCell.startCountdown(CV: collectionView, index: indexPath, start: false)
+                        selectedCell.habitNameLabel.isHidden = false
+                        selectedCell.streakLabel.isHidden = false
+                        selectedCell.habitCountLabel.isHidden = false
+                        selectedCell.timerLabel.isHidden = true
+                    }
+                    else {
+                        UIView.animate(withDuration: 0.5, delay: 0.5){
+                            selectedCell.imageView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                        }
+                        UIView.animate(withDuration: 0.5, delay: 1){
+                            selectedCell.imageView.transform = CGAffineTransform(scaleX: 1, y: 1)
+                        }
+                        selectedCell.startCountdown(CV: collectionView, index: indexPath, start: true)
+                        selectedCell.timerLabel.text = selectedCell.habitCountLabel.text
+                        selectedCell.timerLabel.isHidden = false
+                        selectedCell.habitNameLabel.isHidden = true
+                        selectedCell.streakLabel.isHidden = true
+                        selectedCell.habitCountLabel.isHidden = true
+                        
+                    }
                 }
                 else {
-                    selectedCell.startCountdown(CV: collectionView, index: indexPath, start: true)
-                    selectedCell.timerLabel.text = selectedCell.habitCountLabel.text
-                    selectedCell.timerLabel.isHidden = false
-                    selectedCell.habitNameLabel.isHidden = true
-                    selectedCell.streakLabel.isHidden = true
-                    selectedCell.habitCountLabel.isHidden = true
+                    let offset = collectionView.contentOffset
+                    if (habitArray[indexPath.row].currentCount < habitArray[indexPath.row].goal){
+                        
+                        habitArray[indexPath.row].finishedFirstTime = false
+                        habitArray[indexPath.row].currentCount += 1
+                        countedButtonPressAnimation(indexPath: indexPath, selectedCell: selectedCell)
+                        
+                        let habitRef = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("habits")
+                        habitRef.document("habit\(indexPath.row)").updateData(["currentCount" : habitArray[indexPath.row].currentCount])
+                        collectionView.reloadItems(at: [indexPath])
+                        collectionView.layoutIfNeeded()
+                        collectionView.setContentOffset(offset, animated: false)
+                    }
                     
-                }
-            }
-            else {
-                //                UIView.animate(withDuration: 0.25, delay: 0.0, options: [.allowUserInteraction, .curveEaseIn, .curveEaseOut], animations: {
-                //                    selectedCell.imageView.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
-                //                }, completion: nil)
-                //
-                //                UIView.animate(withDuration: 0.25, delay: 0.25, options: [.allowUserInteraction, .curveEaseIn, .curveEaseOut], animations: {
-                //                    selectedCell.imageView.transform = CGAffineTransform(scaleX: -0.85, y: -0.85)
-                //                }, completion: {_ in collectionView.reloadData()})
-                let offset = collectionView.contentOffset
-                if (habitArray[indexPath.row].currentCount < habitArray[indexPath.row].goal){
-                    habitArray[indexPath.row].currentCount += 1
-                    let habitRef = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("habits")
-                    habitRef.document("habit\(indexPath.row)").updateData(["currentCount" : habitArray[indexPath.row].currentCount])
+                    if (habitArray[indexPath.row].currentCount == habitArray[indexPath.row].goal){
+                        
+                        finishedPulseAnimation(indexPath: indexPath, selectedCell: selectedCell)
+                        
+                        if habitArray[indexPath.row].finishedFirstTime {
+                            
+                            
+                            habitArray[indexPath.row].finishedFirstTime = false
+                        }
+                        
+                        if (habitArray[indexPath.row].addFirebase){
+                            let docRef = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid)
+                            docRef.getDocument{(document, error) in
+                                if let document = document{
+                                    let property = document.get("finishedHabits") as! Int
+                                    docRef.updateData(["finishedHabits": property + 1])
+                                }
+                                
+                                Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("habits").document("habit\(indexPath.row)").updateData(["addFirebase": false])
+                                
+                            }
+                            self.habitArray[indexPath.row].addFirebase = false
+                            selectedCell.configure(with: self.habitArray[indexPath.row])
+                        }
+                    }
                     collectionView.reloadItems(at: [indexPath])
                     collectionView.layoutIfNeeded()
                     collectionView.setContentOffset(offset, animated: false)
                 }
-                // streak implementation could be like this: if addFirebase flag of certain habit is true at like 23:59 streak counter gets reset to zero for this habit
-                if (habitArray[indexPath.row].currentCount == habitArray[indexPath.row].goal){
-                    
-                    if habitArray[indexPath.row].finishedFirstTime {
-                        let origin = self.collectionView.layoutAttributesForItem(at: indexPath)?.center
-                        let pulse = PulseAnimation(numberOfPulse: 2, radius: 110, postion: origin!)
-                        pulse.animationDuration = 0.75
-                        pulse.backgroundColor = selectedCell.imageView.tintColor.adjust(by: -20)?.cgColor
-                        collectionView.layer.insertSublayer(pulse, below: self.view.layer)
-                        habitArray[indexPath.row].finishedFirstTime = false
-                    }
-                    
-                    //                    UIView.animate(withDuration: 0.5) { () -> Void in
-                    //                        selectedCell.imageView.transform = CGAffineTransform(rotationAngle: CGFloat.pi * 2)
-                    //                    }
-                    //
-                    //                    UIView.animate(withDuration: 0.5, delay: 0.5, options: UIView.AnimationOptions.curveEaseIn, animations: { () -> Void in
-                    //                        selectedCell.imageView.transform = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
-                    //                    }, completion: nil)
-                    
-                    if (habitArray[indexPath.row].addFirebase){
-                        let docRef = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid)
-                        docRef.getDocument{(document, error) in
-                            if let document = document{
-                                let property = document.get("finishedHabits") as! Int
-                                docRef.updateData(["finishedHabits": property + 1])
-                            }
-                            
-                            Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("habits").document("habit\(indexPath.row)").updateData(["addFirebase": false])
-                            self.habitArray[indexPath.row].addFirebase = false
-                        }
-                    }
-                }
-                collectionView.reloadItems(at: [indexPath])
-                collectionView.layoutIfNeeded()
-                collectionView.setContentOffset(offset, animated: false)
             }
         }
     }
@@ -371,7 +382,6 @@ class HabitCollectionViewController: UICollectionViewController, UIGestureRecogn
             }
             if (self.localHabitCounter != -1){
                 for n in 0...self.localHabitCounter{
-                    print("habit\(n)")
                     docRef.collection("habits").document("habit\(n)").getDocument{(document, error) in
                         if let document = document{
                             let name = document.get("name")
@@ -382,9 +392,8 @@ class HabitCollectionViewController: UICollectionViewController, UIGestureRecogn
                             let addFirebase = document.get("addFirebase")
                             let streak = document.get("streak")
                             let time = document.get("timeArray")
-                            let timerFinished = document.get("timerFinished")
                             
-                            let habit = Habit(name: name as! String, color: color as! Int, counted: counted as! Bool, goal: goal as! Int, currentCount: currentCount as! Int, time: time as! [Int], addFirebase: addFirebase as! Bool, streak: streak as! Int, habitNumber: n, finishedFirstTime: true, timerFinished: timerFinished as! Bool)
+                            let habit = Habit(name: name as! String, color: color as! Int, counted: counted as! Bool, goal: goal as! Int, currentCount: currentCount as! Int, time: time as! [Int], addFirebase: addFirebase as! Bool, streak: streak as! Int, habitNumber: n, finishedFirstTime: true)
                             
                             self.habitArray.append(habit)
                         }
@@ -402,10 +411,28 @@ class HabitCollectionViewController: UICollectionViewController, UIGestureRecogn
         let habitRef = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("habits")
         if (habitArray.count - 1 > -1){
             for n in 0...habitArray.count - 1 {
-                habitRef.document("habit\(n)").setData(["color": habitArray[n].color, "counted": habitArray[n].counted, "currentCount": habitArray[n].currentCount, "goal": habitArray[n].goal, "name": habitArray[n].name,"timeArray": habitArray[n].time, "addFirebase": habitArray[n].addFirebase, "streak": habitArray[n].streak, "timerFinished": habitArray[n].timerFinished])
+                habitRef.document("habit\(n)").setData(["color": habitArray[n].color, "counted": habitArray[n].counted, "currentCount": habitArray[n].currentCount, "goal": habitArray[n].goal, "name": habitArray[n].name,"timeArray": habitArray[n].time, "addFirebase": habitArray[n].addFirebase, "streak": habitArray[n].streak])
             }
         }
         Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).updateData(["habitCounter" : self.habitArray.count])
+    }
+    
+    func countedButtonPressAnimation(indexPath: IndexPath, selectedCell: HabitCollectionViewCell){
+        if (habitArray[indexPath.row].currentCount != habitArray[indexPath.row].goal){
+            let origin = self.collectionView.layoutAttributesForItem(at: indexPath)?.center
+            let pulse = PulseAnimation(numberOfPulse: 1, radius: 80, position: origin!)
+            pulse.animationDuration = 0.75
+            pulse.backgroundColor = selectedCell.imageView.tintColor.adjust(by: -20)?.cgColor
+            collectionView.layer.insertSublayer(pulse, below: self.view.layer)
+        }
+    }
+    
+    func finishedPulseAnimation(indexPath: IndexPath, selectedCell: HabitCollectionViewCell){
+        let origin = self.collectionView.layoutAttributesForItem(at: indexPath)?.center
+        let pulse = PulseAnimation(numberOfPulse: 2, radius: 110, position: origin!)
+        pulse.animationDuration = 0.5
+        pulse.backgroundColor = selectedCell.imageView.tintColor.adjust(by: -20)?.cgColor
+        collectionView.layer.insertSublayer(pulse, below: self.view.layer)
     }
 }
 
@@ -432,6 +459,21 @@ extension UIColor {
     }
 }
 
+extension HabitCollectionViewController: TimerFinishedDelegate {
+    func showAlert(cell: HabitCollectionViewCell, indexPathCell: IndexPath) {
+        let alert = UIAlertController(title: "Good Job!", message: "You finished \(cell.habitNameLabel.text ?? "Habit")", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler:  { _ in
+            alert.dismiss(animated: true)
+        }))
+        
+        present(alert, animated: true)
+        habitArray[indexPathCell.row].addFirebase = false
+        cell.habitCell?.addFirebase = false
+        cell.configure(with: cell.habitCell!)
+        Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("habits").document("habit\(indexPathCell.row)").updateData(["addFirebase": false])
+    }
+}
+
 struct Habit{
     let name: String
     let color: Int
@@ -443,5 +485,4 @@ struct Habit{
     var streak: Int
     var habitNumber: Int
     var finishedFirstTime: Bool
-    var timerFinished: Bool
 }

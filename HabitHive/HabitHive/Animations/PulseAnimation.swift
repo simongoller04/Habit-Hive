@@ -1,9 +1,8 @@
 //
 //  PulseAnimation.swift
-//  SearchSpeechToText
+//  HabitHive
 //
-//  Created by Ranosys_ShubhamAgarwal on 23/01/19.
-//  Copyright © 2019 Ranosys_ShubhamAgarwal. All rights reserved.
+//  Created by Sebastian Weidlinger on 29.06.21.
 //
 
 import UIKit
@@ -23,14 +22,14 @@ class PulseAnimation: CALayer {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(numberOfPulse: Float = Float.infinity, radius: CGFloat, postion: CGPoint){
+    init(numberOfPulse: Float = Float.infinity, radius: CGFloat, position: CGPoint){
         super.init()
         self.backgroundColor = UIColor.black.cgColor
         self.contentsScale = UIScreen.main.scale
         self.opacity = 0
         self.radius = radius
         self.numebrOfPulse = numberOfPulse
-        self.position = postion
+        self.position = position
         
         self.bounds = CGRect(x: 0, y: 0, width: radius*2, height: radius*2)
         self.cornerRadius = radius

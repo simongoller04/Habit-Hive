@@ -16,7 +16,7 @@ class SetTimeViewController: UIViewController {
     var timeArray = [Int]()
     var editHabit = false
     
-    var timeDelegate: SetTimeDelegate?
+    public var timeDelegate: SetTimeDelegate?
     @IBOutlet weak var timePicker: UIDatePicker!
     
     override func viewDidLoad() {
@@ -50,6 +50,8 @@ class SetTimeViewController: UIViewController {
         for char: Character in timeString {
             timeArray.append(char.wholeNumberValue!)
         }
+        timeArray.append(0)
+        timeArray.append(0)
     }
     
     func fillArray() {
@@ -57,6 +59,8 @@ class SetTimeViewController: UIViewController {
         timeArray.append(0)
         timeArray.append(0)
         timeArray.append(1)
+        timeArray.append(0)
+        timeArray.append(0)
     }
     
     //Sending the Value of the Datepicker in an Integer Array to the createHabitVC or editHabitVC 
