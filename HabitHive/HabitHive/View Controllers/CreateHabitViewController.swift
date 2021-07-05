@@ -132,14 +132,12 @@ class CreateHabitViewController: UIViewController {
     @IBAction func timedButtonTapped(_ sender: Any) {
         let timeVC = storyboard?.instantiateViewController(withIdentifier: "SetTimeVC") as! SetTimeViewController
         timeVC.timeDelegate = self
-        isCounted = false
         present(timeVC, animated: true, completion: nil)
     }
     
     @IBAction func countedButtonTapped(_ sender: Any) {
         let amountVC = storyboard?.instantiateViewController(withIdentifier: "SetAmountVC") as! SetAmountViewController
         amountVC.amountDelegate = self
-        isCounted = true
         present(amountVC, animated: true, completion: nil)
     }
     
@@ -147,7 +145,7 @@ class CreateHabitViewController: UIViewController {
         if typeOfHabitSelected{
             if habitName.hasText {
                 if (habitName.text?.count)! < 24{
-                    let newHabit = Habit(name: habitName.text ?? "", color: UserDefaults().value(forKey: "sectionColor") as? Int ?? 6, counted: isCounted, goal: valueCounter, currentCount: valueCounter, time: timeArray, addFirebase: true, streak: 0, habitNumber: 0, finishedFirstTime: true)
+                    let newHabit = Habit(name: habitName.text ?? "", color: UserDefaults().value(forKey: "sectionColor") as? Int ?? 6, counted: isCounted, goal: valueCounter, currentCount: valueCounter, time: timeArray, timeOriginal: timeArray, addFirebase: true, streak: 0, habitNumber: 0, finishedFirstTime: true)
                     
                     let habitCounterRef = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid)
                     habitCounterRef.getDocument{(document, error) in
@@ -165,7 +163,7 @@ class CreateHabitViewController: UIViewController {
                             self.timeArray.append(0)
                         }
                         
-                        Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("habits").document("habit\(self.habitCounter)").setData(["name": newHabit.name, "color": newHabit.color, "counted": newHabit.counted, "goal": newHabit.goal, "currentCount": 0, "addFirebase": true, "streak": 0, "timeArray": self.timeArray])
+                        Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("habits").document("habit\(self.habitCounter)").setData(["name": newHabit.name, "color": newHabit.color, "counted": newHabit.counted, "goal": newHabit.goal, "currentCount": 0, "addFirebase": true, "streak": 0, "timeArray": self.timeArray, "timeArrayOriginal": self.timeArray])
                         
                         habitCounterRef.updateData(["habitCounter": self.habitCounter + 1])
                         
@@ -200,6 +198,7 @@ extension CreateHabitViewController: SetAmountDelegate, SetTimeDelegate {
         countedHabit.backgroundColor = color
         timedHabit.backgroundColor = .systemGray4
         typeOfHabitSelected = true
+        isCounted = true
     }
     
     func didTapConfirmTime(time: [Int], color: UIColor) {
@@ -209,6 +208,7 @@ extension CreateHabitViewController: SetAmountDelegate, SetTimeDelegate {
         timedHabit.setTitle("\(timeArray[0])\(timeArray[1]):\(timeArray[2])\(timeArray[3])", for: .normal)
         timedHabit.backgroundColor = color
         typeOfHabitSelected = true
+        isCounted = false
     }
 }
 

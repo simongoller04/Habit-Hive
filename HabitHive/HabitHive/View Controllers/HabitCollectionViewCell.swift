@@ -29,9 +29,6 @@ class HabitCollectionViewCell: UICollectionViewCell {
     var timeDisplayedHour = 0
     var timeDisplayedMinute = 0
     var timeDisplayedSecond = 0
-    var timeDisplayedHourPrev = 0
-    var timeDisplayedMinutePrev = 0
-    var timeDisplayedSecondPrev = 0
     var startVar = false
     var timeArray = [Int]()
     var timeArrayFirebase: Any?
@@ -148,24 +145,24 @@ class HabitCollectionViewCell: UICollectionViewCell {
         }
         else {
             if timeDisplayedSecond == 0 {
-                timeDisplayedMinutePrev = timeDisplayedMinute
-                if timeDisplayedMinutePrev > 0 {
+                if timeDisplayedMinute > 0 {
                     timeDisplayedMinute-=1
                     timeDisplayedSecond = 59
                 }
                 
-                if timeDisplayedMinute == 0 {
-                    timeDisplayedHourPrev = timeDisplayedHour
-                    if timeDisplayedHourPrev > 0 {
+                if timeDisplayedMinute == 0 && timeDisplayedSecond == 0 {
+                    if timeDisplayedHour > 0 {
                         timeDisplayedHour-=1
                         timeDisplayedMinute = 59
                         timeDisplayedSecond = 59
                     }
                 }
+                else {
+                    timeDisplayedSecond = 59
+                }
             }
             
             else {
-                timeDisplayedSecondPrev = timeDisplayedSecond
                 timeDisplayedSecond-=1
             }
             if timeDisplayedHour < 10 {

@@ -276,9 +276,7 @@
                             <outlet property="delegate" destination="LfJ-6j-2ry" id="RhG-zb-vqK"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="Habit Hive" id="TrC-ux-i8H">
-                        <imageReference key="image" image="hexagon.fill" catalog="system" symbolScale="large"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Habit Hive" image="hexagon.fill" catalog="system" id="TrC-ux-i8H"/>
                     <connections>
                         <outlet property="activityIndicator" destination="UGH-mS-vzP" id="VDH-IN-8jY"/>
                     </connections>
