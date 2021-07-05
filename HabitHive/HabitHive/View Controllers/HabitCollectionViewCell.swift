@@ -11,6 +11,7 @@ import FirebaseAuth
 
 protocol TimerFinishedDelegate {
     func showAlert(cell: HabitCollectionViewCell, indexPathCell: IndexPath)
+    func returnTimeArray(timeArray: [Int], indexPath: IndexPath)
 }
 
 class HabitCollectionViewCell: UICollectionViewCell {
@@ -36,6 +37,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
     var timeArrayFirebase: Any?
     
     var counted: Bool?
+    var timerRunning: Bool?
     
     //delegate
     var habitCell: Habit?
@@ -107,10 +109,13 @@ class HabitCollectionViewCell: UICollectionViewCell {
             if let document = document{
                 self.timeArrayFirebase = document.get("timeArray")
                 
-                let result = self.timeArrayFirebase as! [Int]
-                self.timeDisplayedHour = (result[0]) * 10 + (result[1])
-                self.timeDisplayedMinute = (result[2]) * 10 + (result[3])
-                self.timeDisplayedSecond = (result[4]) * 10 + (result[5])
+                //Here a Bug happens when a timed Habit is the last Habit in the view it gets reset
+                if (self.counted == false){
+                    let result = self.timeArrayFirebase as? [Int] ?? self.habitCell!.time
+                    self.timeDisplayedHour = (result[0]) * 10 + (result[1])
+                    self.timeDisplayedMinute = (result[2]) * 10 + (result[3])
+                    self.timeDisplayedSecond = (result[4]) * 10 + (result[5])
+                }
             }
             dispatchGroup.leave()
         }
@@ -132,6 +137,8 @@ class HabitCollectionViewCell: UICollectionViewCell {
         timeArray.append(timeDisplayedSecond % 10)
         
         Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("habits").document("habit\(indexPath.row)").updateData(["timeArray": timeArray])
+        
+        timerDelegate?.returnTimeArray(timeArray: timeArray, indexPath: indexPath)
     }
     
     @objc func Action() {
@@ -152,6 +159,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
                     if timeDisplayedHourPrev > 0 {
                         timeDisplayedHour-=1
                         timeDisplayedMinute = 59
+                        timeDisplayedSecond = 59
                     }
                 }
             }
