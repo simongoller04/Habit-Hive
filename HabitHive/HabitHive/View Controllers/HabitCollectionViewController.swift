@@ -179,32 +179,24 @@ class HabitCollectionViewController: UICollectionViewController, UIGestureRecogn
         }
     }
     
-    //not working not sure why
     func notificationCenter() {
         let center = UNUserNotificationCenter.current()
-        center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in }
+        center.requestAuthorization(options: [.alert, .sound])
+        {(granted, error) in
+        }
+        
         let content = UNMutableNotificationContent()
         content.title = "This is your friendly Habit Hive reminder"
-        content.body = "Some Habits left to do!"
-        let calendar = Calendar.current
-        let components = DateComponents(hour: 9)
-        let components2 = DateComponents(hour: 21)
-        let amDate = calendar.date(from: components)
-        let pmDate = calendar.date(from: components2)
-        let comp1 = calendar.dateComponents([.hour, .minute], from: amDate!)
-        let comp2 = calendar.dateComponents([.hour, .minute], from: pmDate!)
+        content.body = "Already finished all your Habits?"
         
-        let trigger = UNCalendarNotificationTrigger(dateMatching: comp1, repeats: true)
-        let trigger2 = UNCalendarNotificationTrigger(dateMatching: comp2, repeats: true)
+        let components = DateComponents(hour: 20)
+        let date = Calendar.current.date(from: components)
+        let comp = Calendar.current.dateComponents([.hour, .minute], from: date!)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: comp, repeats: true)
         let uuidString = UUID().uuidString
-        let uuidString2 = UUID().uuidString
         let request = UNNotificationRequest(identifier: uuidString, content: content, trigger: trigger)
-        let request2 = UNNotificationRequest(identifier: uuidString2, content: content, trigger: trigger2)
+        
         center.add(request) { (error) in
-            print(error?.localizedDescription ?? "error")
-        }
-        center.add(request2) { (error) in
-            print(error?.localizedDescription ?? "error")
         }
     }
     
@@ -472,7 +464,7 @@ extension UIColor {
 
 extension HabitCollectionViewController: TimerFinishedDelegate {
     func showAlert(cell: HabitCollectionViewCell, indexPathCell: IndexPath) {
-        let alert = UIAlertController(title: "Good Job!", message: "You finished your \(cell.habitNameLabel.text ?? "Habit")", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Good Job!", message: "You finished \(cell.habitNameLabel.text ?? "Habit")", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler:  { _ in
             alert.dismiss(animated: true)
         }))

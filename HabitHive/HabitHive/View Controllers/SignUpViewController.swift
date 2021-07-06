@@ -73,7 +73,12 @@ class SignUpViewController: UIViewController {
                 //check for errors
                 if error != nil {
                     // there was an error creating user
-                    self.showError("Error creating User")
+                    if (password.count < 6){
+                        self.showError("Password too short!")
+                    }
+                    else{
+                        self.showError("Error creating User")
+                    }
                 }
                 else{
                     //User was created succesfully, now store the first name and last name

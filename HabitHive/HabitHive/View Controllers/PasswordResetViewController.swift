@@ -18,6 +18,7 @@ class PasswordResetViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        emailLabel.becomeFirstResponder()
         setUpElements()
     }
     
