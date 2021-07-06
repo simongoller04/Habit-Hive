@@ -88,6 +88,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
         self.startVar = start
         let dispatchGroupCountdown = DispatchGroup()
         if self.startVar == true {
+            timerRunning = true
             self.fetchTimeFromFirebase(indexPath: index, dispatchGroup: dispatchGroupCountdown)
             dispatchGroupCountdown.notify(queue: .main){
                 self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.Action), userInfo: nil, repeats: self.startVar)
@@ -96,6 +97,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
         else {
             self.timer.invalidate()
             createTimeArray(indexPath: index)
+            timerRunning = false
         }
     }
     

@@ -66,8 +66,6 @@ class SignUpViewController: UIViewController {
             let lastName = lastNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            // let achievements = String[""]
-            
             
             //create the user
             Auth.auth().createUser(withEmail: email, password: password) { result, error in

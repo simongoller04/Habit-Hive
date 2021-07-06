@@ -152,7 +152,6 @@ class EditHabitViewController: UIViewController {
         timeVC.timeDelegate = self
         timeVC.editHabit = true
         timeVC.timeArray = habit.time
-        isCounted = false
         present(timeVC, animated: true, completion: nil)
     }
     
@@ -161,7 +160,6 @@ class EditHabitViewController: UIViewController {
         amountVC.amountDelegate = self
         amountVC.value = Double (habit.goal)
         amountVC.editHabit = true
-        isCounted = true
         present(amountVC, animated: true, completion: nil)
     }
     
@@ -178,16 +176,18 @@ extension EditHabitViewController: SetAmountDelegate, SetTimeDelegate {
         countedHabit.setTitle("Amount: \(amount)", for: .normal)
         timedHabit.setTitle("Timed", for: .normal)
         countedHabit.backgroundColor = color
-        timedHabit.backgroundColor = .systemGray5
+        isCounted = true
+        timedHabit.backgroundColor = .systemGray4
     }
     
     func didTapConfirmTime(time: [Int], color: UIColor) {
         timeArray = time
         habit.counted = false
         habit.time = time
-        countedHabit.backgroundColor = .systemGray5
+        countedHabit.backgroundColor = .systemGray4
         timedHabit.backgroundColor = color
         countedHabit.setTitle("Counted", for: .normal)
+        isCounted = false
         timedHabit.setTitle("\(timeArray[0])\(timeArray[1]):\(timeArray[2])\(timeArray[3])", for: .normal)
     }
 }

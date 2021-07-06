@@ -105,7 +105,7 @@ class HabitCollectionViewController: UICollectionViewController, UIGestureRecogn
         docRef.getDocument{(document, error) in
             if let document = document{
                 let property = document.get("firstName")
-                UserDefaults.standard.set(property as! String, forKey: "firstName")
+                UserDefaults.standard.set(property as? String ?? "User", forKey: "firstName")
             }
         }
     }
@@ -115,6 +115,7 @@ class HabitCollectionViewController: UICollectionViewController, UIGestureRecogn
             for n in 0...cellsWhichAreLongPressed.count - 1{
                 resetCellsToStandard(cell: cellsWhichAreLongPressed[n])
             }
+            cellsWhichAreLongPressed.removeAll()
         }
     }
     
@@ -143,40 +144,42 @@ class HabitCollectionViewController: UICollectionViewController, UIGestureRecogn
         
         if let indexPath = collectionView?.indexPathForItem(at: p) {
             let cell = collectionView.cellForItem(at: indexPath) as! HabitCollectionViewCell
-            cell.habitNameLabel.isHidden = true
-            cell.deleteButton.isHidden = false
-            cell.editButton.isHidden = false
-            cell.habitCountLabel.isHidden = true
-            cell.streakLabel.isHidden = true
-            if (!habitArray[indexPath.row].counted){
-                cell.startCountdown(CV: collectionView, index: indexPath, start: false)
+            if (!(cell.timerRunning ?? false)){
+                cell.habitNameLabel.isHidden = true
+                cell.deleteButton.isHidden = false
+                cell.editButton.isHidden = false
+                cell.habitCountLabel.isHidden = true
+                cell.streakLabel.isHidden = true
+                if (!habitArray[indexPath.row].counted){
+                    cell.startCountdown(CV: collectionView, index: indexPath, start: false)
+                }
+                indexPathGlobal = indexPath
+                cellsWhichAreLongPressed.append(cell)
+                let current = habitArray[indexPath.row].color
+                
+                var currentColor = UIColor()
+                switch current{
+                case 1:
+                    currentColor = UIColor.systemBlue
+                case 2:
+                    currentColor = UIColor.systemGreen
+                case 3:
+                    currentColor = UIColor.systemYellow
+                case 4:
+                    currentColor = UIColor.systemOrange
+                case 5:
+                    currentColor = UIColor.systemPurple
+                default:
+                    currentColor = UIColor.systemGray
+                }
+                
+                cell.deleteButton.backgroundColor = currentColor.adjust(by: -20)
+                cell.editButton.backgroundColor = currentColor.adjust(by: -20)
             }
-            indexPathGlobal = indexPath
-            cellsWhichAreLongPressed.append(cell)
-            let current = habitArray[indexPath.row].color
-            
-            var currentColor = UIColor()
-            switch current{
-            case 1:
-                currentColor = UIColor.systemBlue
-            case 2:
-                currentColor = UIColor.systemGreen
-            case 3:
-                currentColor = UIColor.systemYellow
-            case 4:
-                currentColor = UIColor.systemOrange
-            case 5:
-                currentColor = UIColor.systemPurple
-            default:
-                currentColor = UIColor.systemGray
-            }
-            
-            cell.deleteButton.backgroundColor = currentColor.adjust(by: -20)
-            cell.editButton.backgroundColor = currentColor.adjust(by: -20)
         }
     }
     
-    
+    //not working not sure why
     func notificationCenter() {
         let center = UNUserNotificationCenter.current()
         center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in }
@@ -469,7 +472,7 @@ extension UIColor {
 
 extension HabitCollectionViewController: TimerFinishedDelegate {
     func showAlert(cell: HabitCollectionViewCell, indexPathCell: IndexPath) {
-        let alert = UIAlertController(title: "Good Job!", message: "You finished \(cell.habitNameLabel.text ?? "Habit")", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Good Job!", message: "You finished your \(cell.habitNameLabel.text ?? "Habit")", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler:  { _ in
             alert.dismiss(animated: true)
         }))

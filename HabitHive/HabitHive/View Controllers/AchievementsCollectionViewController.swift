@@ -55,6 +55,5 @@ class AchievementsCollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        print ("Achievement: \(dataSource[indexPath.row])")
     }
 }
