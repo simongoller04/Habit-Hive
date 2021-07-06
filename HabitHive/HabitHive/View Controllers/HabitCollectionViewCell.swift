@@ -12,6 +12,7 @@ import FirebaseAuth
 protocol TimerFinishedDelegate {
     func showAlert(cell: HabitCollectionViewCell, indexPathCell: IndexPath)
     func returnTimeArray(timeArray: [Int], indexPath: IndexPath)
+    func returnTimer(timer: Timer)
 }
 
 class HabitCollectionViewCell: UICollectionViewCell {
@@ -35,6 +36,7 @@ class HabitCollectionViewCell: UICollectionViewCell {
     
     var counted: Bool?
     var timerRunning: Bool?
+    var originalTimerArray = [Int]()
     
     //delegate
     var habitCell: Habit?
@@ -73,13 +75,19 @@ class HabitCollectionViewCell: UICollectionViewCell {
         imageView.tintColor = color
         imageView.transform = CGAffineTransform(rotationAngle: CGFloat.pi/2)
         
-        if habit.counted {
-            habitCountLabel.text = "\(habit.currentCount)/\(habit.goal)"
-        } else {
-            let dispatchGroupStart = DispatchGroup()
-            fetchTimeFromFirebase(indexPath: indexPathCell!, dispatchGroup: dispatchGroupStart)
+        if (habit.addFirebase){
+            if habit.counted {
+                habitCountLabel.text = "\(habit.currentCount)/\(habit.goal)"
+            } else {
+                let dispatchGroupStart = DispatchGroup()
+                fetchTimeFromFirebase(indexPath: indexPathCell!, dispatchGroup: dispatchGroupStart)
+            }
         }
-        if (!habit.addFirebase) {
+        //habit finished
+        else {
+            if (!habit.counted){
+                habitCountLabel.text = "\(originalTimerArray[0])\(originalTimerArray[1]):\(originalTimerArray[2])\(originalTimerArray[3]):\(originalTimerArray[4])\(originalTimerArray[5])"
+            }
             checkMarkImage.isHidden = false
         }
     }
@@ -92,6 +100,10 @@ class HabitCollectionViewCell: UICollectionViewCell {
             self.fetchTimeFromFirebase(indexPath: index, dispatchGroup: dispatchGroupCountdown)
             dispatchGroupCountdown.notify(queue: .main){
                 self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.Action), userInfo: nil, repeats: self.startVar)
+                
+                //added to fix a bug where if the timer was running
+                //the timer label would appear on a random cell when a new Habit was added
+                self.timerDelegate?.returnTimer(timer: self.timer)
             }
         }
         else {

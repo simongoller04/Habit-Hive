@@ -17,6 +17,7 @@ class HabitCollectionViewController: UICollectionViewController, UIGestureRecogn
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var cellsWhichAreLongPressed = [HabitCollectionViewCell]()
     let dispatchGroup = DispatchGroup()
+    var timerArray = [Timer]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -217,9 +218,17 @@ class HabitCollectionViewController: UICollectionViewController, UIGestureRecogn
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+            if (timerArray.count - 1 > 0){
+                for n in 0...timerArray.count - 1{
+                    timerArray[n].invalidate()
+                }
+                timerArray.removeAll()
+            }
+        
         let habitCell = collectionView.dequeueReusableCell(withReuseIdentifier: "habitCell", for: indexPath) as! HabitCollectionViewCell
         habitCell.timerDelegate = self
         habitCell.indexPathCell = indexPath
+        habitCell.originalTimerArray = habitArray[indexPath.row].timeOriginal
         habitCell.counted = habitArray[indexPath.row].counted
         habitCell.configure(with: habitArray[indexPath.row])
         habitCell.deleteButton.addTarget(self, action: #selector(deleteHabit(_:)), for: .touchUpInside)
@@ -472,12 +481,17 @@ extension HabitCollectionViewController: TimerFinishedDelegate {
         present(alert, animated: true)
         habitArray[indexPathCell.row].addFirebase = false
         cell.habitCell?.addFirebase = false
+        cell.originalTimerArray = habitArray[indexPathCell.row].timeOriginal
         cell.configure(with: cell.habitCell!)
         Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).collection("habits").document("habit\(indexPathCell.row)").updateData(["addFirebase": false])
     }
     
     func returnTimeArray(timeArray: [Int], indexPath: IndexPath){
         habitArray[indexPath.row].time = timeArray
+    }
+    
+    func returnTimer(timer: Timer) {
+        timerArray.append(timer)
     }
 }
 
